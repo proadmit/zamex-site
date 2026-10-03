@@ -429,7 +429,7 @@ class Page extends DCLogic {
     const T = {
       en: {
         navOtc: "About", navBusiness: "For business", navHow: "Process", navSecurity: "Security", navAbout: "About",
-        contact: "Contact", open: "Request Quote",
+        contact: "Contact", contactUs: "Contact us", open: "Request Quote",
         heroPlace: "Dushanbe, Republic of Tajikistan",
         heroTitle: "Financial Infrastructure For Global Business",
         heroSub: "OTC, settlement and digital assets across Central Asia.",
@@ -484,7 +484,7 @@ class Page extends DCLogic {
       },
       ru: {
         navOtc: "О нас", navBusiness: "Для бизнеса", navHow: "Процесс", navSecurity: "Безопасность", navAbout: "О компании",
-        contact: "Контакты", open: "Запросить котировку",
+        contact: "Контакты", contactUs: "Связаться с нами", open: "Запросить котировку",
         heroPlace: "Душанбе, Республика Таджикистан",
         heroTitle: "Финансовая Инфраструктура\nДля Глобального Бизнеса",
         heroSub: "OTC, расчёты и цифровые активы в Центральной Азии.",
@@ -539,7 +539,7 @@ class Page extends DCLogic {
       },
       tg: {
         navOtc: "Дар бораи мо", navBusiness: "Барои бизнес", navHow: "Раванд", navSecurity: "Амният", navAbout: "Дар бораи мо",
-        contact: "Тамос", open: "Дархости нархнома",
+        contact: "Тамос", contactUs: "Тамос бо мо", open: "Дархости нархнома",
         heroPlace: "Душанбе, Ҷумҳурии Тоҷикистон",
         heroTitle: "Инфрасохтори Молиявӣ\nБарои Тиҷорати Ҷаҳонӣ",
         heroSub: "OTC, ҳисоббаробаркунӣ ва дороиҳои рақамӣ дар Осиёи Марказӣ.",
@@ -703,7 +703,7 @@ class Page extends DCLogic {
       navCtaOp: navOpen ? "1" : "0",
       navCtaDelay: navOpen ? ".4s" : "0s",
       mobLinks: [["#otc", t.navOtc], ["#how", t.navHow], ["#security", t.navSecurity]].map((l, i) => ({ href: l[0], label: l[1], op: navOpen ? "1" : "0", ty: navOpen ? "translateY(0)" : "translateY(16px)", delay: navOpen ? (140 + i * 60) + "ms" : "0ms", go: () => this.setState({ nav: false }) })),
-      mobLangs: LANGS.map((l) => ({ code: l.code, sel: l.id === lang ? "true" : "false", bg: l.id === lang ? "#FFFFFF" : "transparent", fg: l.id === lang ? "#06101C" : "#FFFFFF", pick: () => this.setState({ lang: l.id }) })),
+      mobLangs: LANGS.map((l) => ({ code: l.code, sel: l.id === lang ? "true" : "false", bg: l.id === lang ? "var(--zx-btn)" : "transparent", fg: l.id === lang ? "var(--zx-btn-ink)" : "var(--zx-ink)", pick: () => this.setState({ lang: l.id }) })),
       menuOpen: open,
       menuExpanded: open ? "true" : "false",
       chevRot: open ? "rotate(180deg)" : "none",
@@ -1254,25 +1254,25 @@ ${(v.langsLight || []).map((lg) => html`
 
 <div style="position: fixed; inset: 0; z-index: 80; visibility: ${v.navVis}; pointer-events: ${v.navPe}; transition: visibility 0s linear ${v.navVisDelay}">
 <button type="button" aria-label="${v.t.close}" onClick="${v.closeNav}" style="position: absolute; inset: 0; border: 0; padding: 0; cursor: pointer; background: rgba(0,0,0,0.45); backdrop-filter: blur(4px); opacity: ${v.navBackOp}; transition: opacity .5s ease"></button>
-<div role="dialog" aria-label="${v.t.menu}" style="position: absolute; top: 0; right: 0; height: 100%; width: min(100%, 400px); box-sizing: border-box; padding: 20px 20px 150px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; color: #FFFFFF; background: radial-gradient(ellipse 120% 60% at 100% 110%, rgba(255,106,43,0.35), transparent 60%), #0B1828; transform: ${v.navPanelX}; transition: transform .5s cubic-bezier(.16,1,.3,1)">
+<div role="dialog" aria-label="${v.t.menu}" style="position: absolute; top: 0; right: 0; height: 100%; width: min(100%, 400px); box-sizing: border-box; padding: 20px 20px 150px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; color: var(--zx-ink); background: radial-gradient(ellipse 120% 60% at 100% 110%, rgba(255,106,43,0.22), transparent 60%), var(--zx-surface); transform: ${v.navPanelX}; transition: transform .5s cubic-bezier(.16,1,.3,1)">
 <div style="display: flex; align-items: center; justify-content: space-between">
 <span class="zx-logo" style="display: inline-flex; align-items: center"><svg viewBox="0 0 1266 228" style="display: block; height: 20px; width: auto" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M321.3 226.6C277.0 218.2 241.4 184.8 230.6 141.5C228.1 131.6 227.0 115.6 228.0 104.6C231.9 64.2 256.2 29.6 293.1 12.1C336.3 -8.5 388.9 1.2 422.2 35.8C441.5 55.9 451.7 78.5 454.0 106.5C454.5 113.1 455.0 142.7 455.0 172.2L455.0 226.0L439.0 226.0L423.0 226.0L423.0 209.9L423.0 193.7L418.6 197.8C405.8 209.6 386.4 220.2 369.5 224.6C361.2 226.8 356.8 227.3 344.0 227.6C333.8 227.8 326.1 227.5 321.3 226.6ZM883.5 226.0C855.9 220.0 832.8 205.6 816.0 183.9C781.0 138.6 785.1 75.0 825.5 34.5C852.8 7.3 892.2 -4.3 930.0 4.0C964.2 11.4 993.9 35.0 1008.6 66.5L1011.9 73.5L951.2 134.2C917.9 167.6 890.8 195.2 891.2 195.5C891.5 195.8 896.2 196.3 901.6 196.6C918.4 197.5 936.1 192.9 950.1 183.9C958.0 178.8 971.4 165.2 975.9 157.7C979.9 151.0 983.7 141.8 985.3 134.9L986.5 130.0L1002.2 130.0C1020.5 130.0 1019.2 128.9 1016.0 141.6C1009.2 168.0 994.7 189.7 972.5 206.5C963.7 213.2 946.1 221.6 934.5 224.6C920.5 228.3 896.8 228.9 883.5 226.0ZM0.0 210.8L0.0 195.5L80.2 115.3L160.5 35.0L80.2 35.0L0.0 35.0L0.0 19.0L0.0 3.0L103.0 3.0L206.0 3.0L206.0 18.6L206.0 34.2L125.2 114.6L44.5 194.9L125.8 195.0L207.0 195.0L207.0 210.5L207.0 226.0L103.5 226.0L0.0 226.0L0.0 210.8ZM475.0 153.7C475.0 82.5 475.5 70.1 478.4 60.0C487.2 30.1 511.7 7.4 541.0 2.0C551.0 0.1 567.1 0.5 576.5 2.9C592.0 6.9 608.8 17.1 618.4 28.4L623.2 33.9L628.0 28.1C647.9 4.2 685.0 -5.6 715.7 4.9C736.9 12.2 756.1 29.7 764.3 49.5C770.9 65.3 770.4 58.6 770.8 146.2L771.1 226.0L755.6 226.0L740.1 226.0L739.8 148.8L739.5 71.5L737.2 65.6C729.4 44.9 711.1 32.0 689.5 32.0C666.4 32.0 646.3 47.4 640.5 69.5C639.2 74.6 639.0 86.3 639.0 150.7L639.0 226.0L623.0 226.0L607.0 226.0L607.0 150.2C607.0 101.6 606.6 72.9 605.9 70.0C604.1 61.9 598.8 52.8 592.4 46.5C582.6 36.8 571.0 32.0 556.9 32.0C534.9 32.0 515.7 46.3 509.0 67.9C507.1 74.0 507.0 77.2 507.0 150.1L507.0 226.0L491.0 226.0L475.0 226.0L475.0 153.7ZM1039.0 206.2C1039.0 183.8 1040.2 172.2 1043.6 160.0C1046.6 149.3 1055.4 131.5 1061.9 123.0C1068.4 114.4 1081.9 101.5 1089.7 96.4L1096.0 92.3L1091.9 90.1C1079.3 83.0 1062.9 65.8 1054.4 50.8C1047.3 38.2 1042.0 22.7 1040.5 10.2L1039.8 4.0L1055.4 4.0C1067.1 4.0 1071.2 4.3 1071.4 5.2C1071.6 5.9 1072.5 10.0 1073.5 14.2C1076.7 28.8 1085.1 43.1 1097.1 54.5C1104.9 61.9 1107.7 63.9 1116.6 68.4C1165.0 92.6 1225.0 61.8 1233.5 8.3L1234.2 4.0L1249.7 4.0L1265.2 4.0L1264.5 10.7C1262.8 26.7 1254.0 48.0 1243.3 62.6C1236.5 71.7 1225.4 82.3 1216.2 88.5L1209.9 92.7L1216.7 97.1C1232.0 107.1 1248.2 126.8 1256.1 145.1C1263.9 163.2 1266.0 175.4 1266.0 204.8L1266.0 226.0L1250.6 226.0L1235.3 226.0L1234.7 202.8C1234.1 178.9 1233.3 172.8 1228.9 161.0C1222.0 142.2 1204.0 123.4 1185.5 115.7C1172.8 110.4 1168.4 109.5 1153.0 109.5C1136.3 109.5 1130.4 110.8 1117.3 117.1C1096.6 127.0 1081.1 145.2 1074.4 167.5C1071.8 176.0 1071.7 177.9 1071.2 201.2L1070.8 226.0L1054.9 226.0L1039.0 226.0L1039.0 206.2ZM357.6 195.1C386.9 189.0 411.8 165.9 420.0 137.0C422.7 127.6 423.6 111.9 422.1 102.2C417.2 70.9 395.4 45.8 364.5 36.0C353.9 32.6 334.4 32.1 322.8 34.9C293.1 42.0 271.0 62.7 261.9 92.0C259.9 98.4 259.6 101.7 259.5 114.0C259.5 126.2 259.9 129.8 261.8 136.3C274.0 178.4 315.4 203.8 357.6 195.1ZM916.4 125.1L973.3 68.2L971.5 65.3C966.0 56.9 951.3 45.3 939.3 39.9C927.7 34.6 917.3 32.7 902.5 33.3C884.3 34.0 872.2 38.1 857.5 48.5C822.0 73.6 813.1 123.3 837.4 159.8C841.5 165.9 857.0 182.0 858.8 182.0C859.2 182.0 885.1 156.4 916.4 125.1Z"></path></svg><span class="zm-sr">Zamex</span></span>
-<button type="button" onClick="${v.closeNav}" aria-label="${v.t.close}" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,0.12); cursor: pointer; display: flex; align-items: center; justify-content: center">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+<button type="button" onClick="${v.closeNav}" aria-label="${v.t.close}" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(var(--zx-ink-rgb),0.08); color: var(--zx-ink); cursor: pointer; display: flex; align-items: center; justify-content: center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
 </button>
 </div>
 <nav aria-label="${v.t.menu}" style="display: flex; flex-direction: column; gap: 8px">
 ${(v.mobLinks || []).map((ml) => html`
-<a href="${ml.href}" onClick="${ml.go}" style="padding: 16px 20px; border-radius: 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: #FFFFFF; font-size: 18px; font-weight: 500; text-decoration: none; opacity: ${ml.op}; transform: ${ml.ty}; transition: opacity .5s cubic-bezier(.16,1,.3,1) ${ml.delay}, transform .5s cubic-bezier(.16,1,.3,1) ${ml.delay}">${ml.label}</a>
+<a href="${ml.href}" onClick="${ml.go}" style="padding: 16px 20px; border-radius: 18px; background: rgba(var(--zx-ink-rgb),0.04); border: 1px solid rgba(var(--zx-ink-rgb),0.1); color: var(--zx-ink); font-size: 18px; font-weight: 500; text-decoration: none; opacity: ${ml.op}; transform: ${ml.ty}; transition: opacity .5s cubic-bezier(.16,1,.3,1) ${ml.delay}, transform .5s cubic-bezier(.16,1,.3,1) ${ml.delay}">${ml.label}</a>
 `)}
 </nav>
 <div role="group" aria-label="${v.t.langLabel}" style="display: flex; gap: 8px">
 ${(v.mobLangs || []).map((lg) => html`
-<button type="button" onClick="${lg.pick}" aria-pressed="${lg.sel}" style="min-width: 56px; min-height: 44px; padding: 0 14px; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; background: ${lg.bg}; color: ${lg.fg}; cursor: pointer; font: 600 14px Onest, sans-serif">${lg.code}</button>
+<button type="button" onClick="${lg.pick}" aria-pressed="${lg.sel}" style="min-width: 56px; min-height: 44px; padding: 0 14px; border: 1px solid rgba(var(--zx-ink-rgb),0.2); border-radius: 999px; background: ${lg.bg}; color: ${lg.fg}; cursor: pointer; font: 600 14px Onest, sans-serif">${lg.code}</button>
 `)}
 </div>
 <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 20px; display: flex; flex-direction: column; gap: 10px; opacity: ${v.navCtaOp}; transition: opacity .5s ease ${v.navCtaDelay}">
-<a href="quote.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #FFFFFF; color: #06101C; font-weight: 600; font-size: 16px; text-decoration: none">${v.t.open}</a>
+<a href="contact.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; box-sizing: border-box; border-radius: 999px; background: transparent; border: 1.5px solid rgba(var(--zx-ink-rgb),0.22); color: var(--zx-ink); font-weight: 600; font-size: 16px; text-decoration: none">${v.t.contactUs}</a>
 <a href="quote.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #FF6A2B; color: #06101C; font-weight: 600; font-size: 16px; text-decoration: none">${v.t.ctaQuote}</a>
 </div>
 </div>
