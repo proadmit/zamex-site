@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zamex — Request a quote</title>
+<meta name="description" content="Zamex — corporate OTC desk, settlement and digital asset operations across Central Asia.">
+<meta name="theme-color" content="#0B1828">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F5F5}
+a{color:#0A1626}a:hover{color:#C2410C}
+button:focus-visible,a:focus-visible{outline:2px solid #C2410C;outline-offset:3px}
+.fx-in{width:100%;box-sizing:border-box;min-height:52px;padding:0 16px;border-radius:14px;border:1px solid rgba(10,22,38,.12);background:#F6F7F8;color:#0A1626;font:400 16px Onest,system-ui,sans-serif;outline:none;transition:border-color .2s,box-shadow .2s,background-color .2s}
+.fx-in::placeholder{color:rgba(10,22,38,.38)}
+.fx-in:hover{border-color:rgba(10,22,38,.24)}
+.fx-in:focus{border-color:#0A1626;background:#FFFFFF;box-shadow:0 0 0 4px rgba(10,22,38,.08)}
+textarea.fx-in{min-height:120px;padding:14px 16px;resize:vertical;line-height:1.5}
+select.fx-in{appearance:none;-webkit-appearance:none;padding-right:44px;cursor:pointer}
+.fx-err .fx-in{border-color:#C2410C;background:#FFF8F5}
+.fx-pill{transition:transform .2s ease,opacity .2s ease}
+.fx-pill:hover{opacity:.9}
+.fx-pill:active{transform:scale(.98)}
+.fx-seg{min-height:48px;flex:1 1 0;border:1px solid rgba(10,22,38,.12);border-radius:12px;cursor:pointer;font:500 15px Onest,system-ui,sans-serif;transition:background-color .2s,color .2s,border-color .2s}
+@keyframes fx-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fx-kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+.fx-up{animation:fx-up .8s cubic-bezier(.16,1,.3,1) both}
+.fx-kb{animation:fx-kb 16s ease-in-out infinite alternate}
+.fx-links{display:flex}
+@media (max-width: 860px){.fx-links{display:none}}
+.zx-theme-t{--zx-bg:#F5F5F5;--zx-surface:#FFFFFF;--zx-field:#F6F7F8;--zx-media:#DCDDDF;--zx-ink:#0A1626;--zx-ink-rgb:10,22,38;--zx-btn:#0A1626;--zx-btn-ink:#FFFFFF;--zx-fade-rgb:238,239,240;--zx-glass:rgba(255,255,255,0.6);--zx-navglass:rgba(248,248,248,0.8);transition:background-color .35s ease,color .35s ease}
+.zx-dark{--zx-bg:#07111E;--zx-surface:#0F1C2E;--zx-field:#0F1C2E;--zx-media:#0F1C2E;--zx-ink:#E6EBF1;--zx-ink-rgb:230,235,241;--zx-btn:#E6EBF1;--zx-btn-ink:#0A1626;--zx-fade-rgb:7,17,30;--zx-glass:rgba(255,255,255,0.08);--zx-navglass:rgba(12,24,40,0.78);color-scheme:dark}
+.zx-dark .zx-snav-in{background:rgba(12,24,40,.74);border-color:rgba(255,255,255,.1)}
+.zx-dark .zx-snl{color:rgba(230,235,241,.72)}
+.zx-dark .zx-snl:hover,.zx-dark .zx-snl.zx-active{color:#FFFFFF;background:rgba(255,255,255,.08)}
+.zx-dark .zx-bwlogo{filter:invert(1)}
+.zx-dark .fx-in{background:#0F1C2E;border-color:rgba(255,255,255,.14);color:#E6EBF1}
+.zx-dark .fx-in::placeholder{color:rgba(230,235,241,.4)}
+.zx-dark .fx-in:focus{background:#13233A;border-color:#E6EBF1;box-shadow:0 0 0 4px rgba(255,255,255,.08)}
+.zx-dark .fx-err .fx-in{background:#2A1610;border-color:#FF8A57}
+.zx-dark .fx-seg{border-color:rgba(255,255,255,.14)}
+.zx-dark a:hover{color:#FF8A57}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition-duration:.01ms !important}}
+</style>
+<style>#app:empty{min-height:100vh;background:#F5F5F5}</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module">
+import { h, render, Component as PComponent } from "./vendor/preact.module.js";
+import htm from "./vendor/htm.module.js";
+import { FORM_ENDPOINT, GEO_ENDPOINT } from "./site-config.js";
+const html = htm.bind(h);
+let savedTheme = "light";
+try { savedTheme = localStorage.getItem("zamex-theme") === "dark" ? "dark" : "light"; } catch (e) {}
+let savedLang = "";
+try { savedLang = localStorage.getItem("zamex-lang") || ""; } catch (e) {}
+// Language: the visitor's own choice wins; otherwise pick by country; if unknown, Russian.
+const RU_COUNTRIES = ["RU", "BY", "KZ", "KG", "UZ", "TM", "AZ", "AM", "MD", "GE"];
+const langForCountry = (c) => !c ? "ru" : c === "TJ" ? "tg" : RU_COUNTRIES.includes(c) ? "ru" : "en";
+const geoLang = savedLang ? Promise.resolve(savedLang) : (() => {
+  try { const cached = sessionStorage.getItem("zamex-geo-lang"); if (cached) return Promise.resolve(cached); } catch (e) {}
+  const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 2500);
+  return fetch(GEO_ENDPOINT, { signal: ctrl.signal }).then((r) => r.json()).then((d) => langForCountry(String(d.country || "").toUpperCase()))
+    .catch(() => "ru").then((l) => { clearTimeout(timer); try { sessionStorage.setItem("zamex-geo-lang", l); } catch (e) {} return l; });
+})();
+let geoReady = "";
+try { geoReady = sessionStorage.getItem("zamex-geo-lang") || ""; } catch (e) {}
+class DCLogic extends PComponent {
+  constructor(props) {
+    super(props);
+    this.state = { theme: savedTheme };
+    if (savedLang) this.state.lang = savedLang; else if (geoReady) this.state.lang = geoReady;
+    if (!savedLang && !geoReady) geoLang.then((l) => { if (!this._langPicked) PComponent.prototype.setState.call(this, { lang: l }); });
+  }
+  setState(update, cb) {
+    try {
+      const u = typeof update === "function" ? null : update;
+      if (u && u.theme) localStorage.setItem("zamex-theme", u.theme);
+      if (u && u.lang) { this._langPicked = true; localStorage.setItem("zamex-lang", u.lang); }
+    } catch (e) {}
+    return super.setState(update, cb);
+  }
+}
+
+async function sendForm(kind, vals, side) {
+  const labelOf = (id) => { const el = document.getElementById("fx-" + id); if (!el) return ""; if (el.tagName === "SELECT") return el.value === "" ? "" : el.options[el.selectedIndex].text; return el.value; };
+  const NAMES = { msg: "message", ccy: "currency" };
+  const data = { form: kind === "quote" ? "OTC quote request" : "Contact" };
+  document.querySelectorAll('[id^="fx-"]').forEach((el) => { const k = el.id.slice(3); const v = labelOf(k); if (v) data[NAMES[k] || k] = v; });
+  if (kind === "quote") { data.side = side === "sell" ? "Sell" : "Buy"; }
+  data.page = location.href;
+  const res = await fetch(FORM_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+  if (!res.ok) throw new Error("send failed " + res.status);
+}
+
+class Page extends DCLogic {
+  constructor(props) { super(props); this.vals = {}; }
+  _fitText() {
+    // Keep every paragraph to at most 3 lines: shrink the text a little (never below 12px) until it fits.
+    cancelAnimationFrame(this._fitRaf);
+    this._fitRaf = requestAnimationFrame(() => {
+      document.querySelectorAll("p").forEach((el) => {
+        if (!el.offsetParent || !el.textContent.trim()) return;
+        if (!el.dataset.fs0) { el.dataset.fs0 = getComputedStyle(el).fontSize; el.dataset.mw0 = el.style.maxWidth || ""; }
+        el.style.fontSize = el.dataset.fs0;
+        el.style.maxWidth = el.dataset.mw0;
+        let fs = parseFloat(el.dataset.fs0);
+        const lines = () => { const lh = parseFloat(getComputedStyle(el).lineHeight) || fs * 1.5; return Math.round(el.offsetHeight / lh); };
+        if (lines() > 3 && el.dataset.mw0) { el.style.maxWidth = "none"; }
+        while (lines() > 3 && fs > 12) { fs -= 0.5; el.style.fontSize = fs + "px"; }
+      });
+    });
+  }
+  componentDidUpdate() { if (this._fitText) this._fitText(); }
+  componentDidMount() {
+    this._fitText();
+    this._onFitResize = () => this._fitText();
+    window.addEventListener("resize", this._onFitResize, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this._fitText());
+  }
+  renderVals() {
+    const T = {"en": {"navOtc": "About", "navBusiness": "For business", "navHow": "Process", "navSecurity": "Security", "navContact": "Contact", "navQuote": "Request a quote", "langLabel": "Language", "copy": "© 2026 Zamex. All rights reserved.", "choose": "Select…", "required": "Required", "badEmail": "Enter a valid email address", "countries": ["Tajikistan", "Uzbekistan", "Kazakhstan", "Kyrgyzstan", "Turkmenistan", "Other"], "emailL": "Email", "locL": "Location", "locV": "Dushanbe, Republic of Tajikistan", "hoursL": "Requests", "hoursV": "24/7", "badge": "OTC desk", "h1": "Request a custom quote", "sub": "Share your transaction details and the Zamex team will prepare an OTC quote.", "panelTitle": "How quoting works", "panelText": "Every quote is prepared for your specific transaction and confirmed with you before execution.", "steps": ["Submit your request", "KYB and compliance review", "Receive your custom quote"], "f_name": "Name", "p_name": "Your full name", "f_company": "Company name", "p_company": "Registered company name", "f_email": "Email", "p_email": "name@company.com", "f_contact": "Telegram or phone number", "p_contact": "@username or +992…", "f_country": "Country of registration", "f_side": "Buy or sell", "buy": "Buy", "sell": "Sell", "f_asset": "Asset", "f_amount": "Approximate amount", "p_amount": "e.g. 250,000", "f_ccy": "Currency", "f_msg": "Message", "p_msg": "Timeline, corridor or anything else we should know", "submit": "Request quote", "note": "By submitting this form you agree to our Privacy policy.", "okTitle": "Request received", "okText": "Your manager will contact you to confirm the details and send a quote.", "again": "Submit another request", "other": "Other"}, "ru": {"navOtc": "О нас", "navBusiness": "Для бизнеса", "navHow": "Процесс", "navSecurity": "Безопасность", "navContact": "Контакты", "navQuote": "Запросить котировку", "langLabel": "Язык", "copy": "© 2026 Zamex. Все права защищены.", "choose": "Выберите…", "required": "Обязательное поле", "badEmail": "Введите корректный email", "countries": ["Таджикистан", "Узбекистан", "Казахстан", "Кыргызстан", "Туркменистан", "Другая страна"], "emailL": "Эл. почта", "locL": "Адрес", "locV": "Душанбе, Республика Таджикистан", "hoursL": "Заявки", "hoursV": "24/7", "badge": "OTC-деск", "h1": "Запросить котировку", "sub": "Опишите сделку, и команда Zamex подготовит OTC-котировку.", "panelTitle": "Как мы готовим котировку", "panelText": "Каждая котировка готовится под вашу сделку и согласуется с вами до исполнения.", "steps": ["Отправьте заявку", "Проверка KYB и комплаенс", "Получите котировку"], "f_name": "Имя", "p_name": "Ваше полное имя", "f_company": "Название компании", "p_company": "Зарегистрированное название", "f_email": "Эл. почта", "p_email": "name@company.com", "f_contact": "Telegram или номер телефона", "p_contact": "@username или +992…", "f_country": "Страна регистрации", "f_side": "Покупка или продажа", "buy": "Покупка", "sell": "Продажа", "f_asset": "Актив", "f_amount": "Примерная сумма", "p_amount": "например, 250 000", "f_ccy": "Валюта", "f_msg": "Сообщение", "p_msg": "Сроки, коридор или другие детали", "submit": "Запросить котировку", "note": "Отправляя форму, вы соглашаетесь с Политикой конфиденциальности.", "okTitle": "Заявка получена", "okText": "Менеджер свяжется с вами, чтобы уточнить детали и отправить котировку.", "again": "Новая заявка", "other": "Другое"}, "tg": {"navOtc": "Дар бораи мо", "navBusiness": "Барои бизнес", "navHow": "Раванд", "navSecurity": "Амният", "navContact": "Тамос", "navQuote": "Дархости нархнома", "langLabel": "Забон", "copy": "© 2026 Zamex. Ҳамаи ҳуқуқҳо ҳифз шудаанд.", "choose": "Интихоб кунед…", "required": "Майдони ҳатмӣ", "badEmail": "Email-и дуруст ворид кунед", "countries": ["Тоҷикистон", "Ӯзбекистон", "Қазоқистон", "Қирғизистон", "Туркманистон", "Кишвари дигар"], "emailL": "Почта", "locL": "Макон", "locV": "Душанбе, Ҷумҳурии Тоҷикистон", "hoursL": "Дархостҳо", "hoursV": "24/7", "badge": "OTC-деск", "h1": "Дархости нархнома", "sub": "Тафсилоти аҳдро нависед ва дастаи Zamex нархномаи OTC омода мекунад.", "panelTitle": "Нархнома чӣ тавр омода мешавад", "panelText": "Ҳар як нархнома барои аҳди шумо омода шуда, пеш аз иҷро бо шумо мувофиқа карда мешавад.", "steps": ["Дархост фиристед", "Санҷиши KYB ва мутобиқат", "Нархнома гиред"], "f_name": "Ном", "p_name": "Ному насаби шумо", "f_company": "Номи ширкат", "p_company": "Номи бақайдгирифта", "f_email": "Почтаи электронӣ", "p_email": "name@company.com", "f_contact": "Telegram ё рақами телефон", "p_contact": "@username ё +992…", "f_country": "Кишвари бақайдгирӣ", "f_side": "Харид ё фурӯш", "buy": "Харид", "sell": "Фурӯш", "f_asset": "Дороӣ", "f_amount": "Маблағи тахминӣ", "p_amount": "масалан, 250 000", "f_ccy": "Асъор", "f_msg": "Паём", "p_msg": "Мӯҳлат, долон ё дигар тафсилот", "submit": "Дархости нархнома", "note": "Бо фиристодани ин шакл шумо ба Сиёсати махфият розӣ мешавед.", "okTitle": "Дархост қабул шуд", "okText": "Менеҷер барои тасдиқи тафсилот ва фиристодани нархнома бо шумо тамос мегирад.", "again": "Дархости нав", "other": "Дигар"}};
+    const LANGS = [{ id: "en", code: "EN" }, { id: "ru", code: "RU" }, { id: "tg", code: "TJ" }];
+    const st = this.state || {};
+    const wanted = st.lang || this.props.startLang || "en";
+    const lang = T[wanted] ? wanted : "en";
+    const t = T[lang];
+    const isDark = (this.state || {}).theme === "dark";
+    const THEME_LABELS = { en: ["Switch to dark mode", "Switch to light mode"], ru: ["Тёмная тема", "Светлая тема"], tg: ["Ҳолати торик", "Ҳолати равшан"] };
+    const FIELDS = ["name", "company", "email", "contact", "country", "asset", "amount", "ccy", "msg"];
+    const REQUIRED = [];
+    const errs = st.errs || {};
+    const on = {}, e = {}, cls = {};
+    FIELDS.forEach((k) => {
+      on[k] = (ev) => {
+        const tgt = ev && ev.target;
+        this.vals[k] = tgt ? (tgt.type === "checkbox" ? (tgt.checked ? "yes" : "") : tgt.value) : "";
+        if (errs[k]) { const n = Object.assign({}, errs); delete n[k]; this.setState({ errs: n }); }
+      };
+      e[k] = errs[k] === "req" ? t.required : errs[k] === "email" ? t.badEmail : "";
+      cls[k] = errs[k] ? "fx-err" : "";
+    });
+    const submit = () => {
+      const n = {};
+      REQUIRED.forEach((k) => { if (!String(this.vals[k] || "").trim()) n[k] = "req"; });
+      if (!n.email && this.vals.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(this.vals.email).trim())) n.email = "email";
+      if (Object.keys(n).length) { this.setState({ errs: n }); return; }
+      this.setState({ errs: {}, sending: true, sendErr: false }); sendForm("quote", this.vals, (this.state || {}).side).then(() => this.setState({ sending: false, sent: true })).catch(() => this.setState({ sending: false, sendErr: true }));
+    };
+    const opt = (arr) => arr.map((label, i) => ({ v: String(i), label: label }));
+    const side = st.side || "buy";
+    this.vals.side = side;
+    const extra = {
+      stepList: t.steps.map((label, i) => ({ n: "0" + (i + 1), label: label })),
+      assets: opt(["USDT", "USDC", "BTC", "ETH", t.other]),
+      ccys: opt(["USD", "RUB", "AED", "EUR", "CNY", t.other]),
+      pickBuy: () => this.setState({ side: "buy" }),
+      pickSell: () => this.setState({ side: "sell" }),
+      buySel: side === "buy" ? "true" : "false", sellSel: side === "sell" ? "true" : "false",
+      buyBg: side === "buy" ? "var(--zx-btn)" : "var(--zx-field)", buyFg: side === "buy" ? "var(--zx-btn-ink)" : "var(--zx-ink)",
+      sellBg: side === "sell" ? "var(--zx-btn)" : "var(--zx-field)", sellFg: side === "sell" ? "var(--zx-btn-ink)" : "var(--zx-ink)"
+    };
+    return Object.assign({
+      t: t, c: t, on: on, e: e, cls: cls, submit: submit,
+      themeCls: isDark ? "zx-dark zx-theme-t" : "zx-theme-t", isDark: isDark, isLight: !isDark,
+      themeLabel: (THEME_LABELS[lang] || THEME_LABELS.en)[isDark ? 1 : 0],
+      toggleTheme: () => this.setState({ theme: isDark ? "light" : "dark" }),
+      sent: !!st.sent, notSent: !st.sent, sendErr: !!st.sendErr, sending: !!st.sending, errText: {"en": "We couldn't send your message. Please try again or email info@zamex.tj.", "ru": "Не удалось отправить. Попробуйте ещё раз или напишите на info@zamex.tj.", "tg": "Фиристодан муяссар нашуд. Бори дигар кӯшиш кунед ё ба info@zamex.tj нависед."}[lang], btnText: st.sending ? {"en": "Sending…", "ru": "Отправка…", "tg": "Фиристода истодааст…"}[lang] : t.submit,
+      again: () => { this.vals = {}; this.setState({ sent: false, errs: {}, side: "buy" }); },
+      countries: opt(t.countries),
+      langs: LANGS.map((l) => ({ code: l.code, sel: l.id === lang ? "true" : "false", bg: l.id === lang ? "var(--zx-btn)" : "transparent", fg: l.id === lang ? "var(--zx-btn-ink)" : "var(--zx-ink)", pick: () => this.setState({ lang: l.id }) }))
+    }, typeof extra === "object" ? extra : {});
+  }
+}
+Page.prototype.render = function () {
+  const v = this.renderVals();
+  return html`
+
+<div class="${v.themeCls}" style="font-family: Onest, 'Segoe UI', system-ui, sans-serif; color: var(--zx-ink); background: var(--zx-bg); min-height: 100vh">
+<header style="position: sticky; top: 12px; z-index: 30; padding: 0 clamp(12px, 3vw, 40px)">
+<div style="max-width: 1240px; margin: 12px auto 0; display: flex; align-items: center; gap: 18px; padding: 8px 8px 8px 22px; border-radius: 999px; background: var(--zx-navglass); -webkit-backdrop-filter: saturate(1.6) blur(18px); backdrop-filter: saturate(1.6) blur(18px); border: 1px solid rgba(var(--zx-ink-rgb),0.08); box-shadow: 0 14px 36px -24px rgba(var(--zx-ink-rgb),0.45)">
+<a href="index.html" aria-label="Zamex" style="display: inline-flex; align-items: center; color: var(--zx-ink)"><svg viewBox="0 0 1266 228" style="display: block; height: 20px; width: auto" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M321.3 226.6C277.0 218.2 241.4 184.8 230.6 141.5C228.1 131.6 227.0 115.6 228.0 104.6C231.9 64.2 256.2 29.6 293.1 12.1C336.3 -8.5 388.9 1.2 422.2 35.8C441.5 55.9 451.7 78.5 454.0 106.5C454.5 113.1 455.0 142.7 455.0 172.2L455.0 226.0L439.0 226.0L423.0 226.0L423.0 209.9L423.0 193.7L418.6 197.8C405.8 209.6 386.4 220.2 369.5 224.6C361.2 226.8 356.8 227.3 344.0 227.6C333.8 227.8 326.1 227.5 321.3 226.6ZM883.5 226.0C855.9 220.0 832.8 205.6 816.0 183.9C781.0 138.6 785.1 75.0 825.5 34.5C852.8 7.3 892.2 -4.3 930.0 4.0C964.2 11.4 993.9 35.0 1008.6 66.5L1011.9 73.5L951.2 134.2C917.9 167.6 890.8 195.2 891.2 195.5C891.5 195.8 896.2 196.3 901.6 196.6C918.4 197.5 936.1 192.9 950.1 183.9C958.0 178.8 971.4 165.2 975.9 157.7C979.9 151.0 983.7 141.8 985.3 134.9L986.5 130.0L1002.2 130.0C1020.5 130.0 1019.2 128.9 1016.0 141.6C1009.2 168.0 994.7 189.7 972.5 206.5C963.7 213.2 946.1 221.6 934.5 224.6C920.5 228.3 896.8 228.9 883.5 226.0ZM0.0 210.8L0.0 195.5L80.2 115.3L160.5 35.0L80.2 35.0L0.0 35.0L0.0 19.0L0.0 3.0L103.0 3.0L206.0 3.0L206.0 18.6L206.0 34.2L125.2 114.6L44.5 194.9L125.8 195.0L207.0 195.0L207.0 210.5L207.0 226.0L103.5 226.0L0.0 226.0L0.0 210.8ZM475.0 153.7C475.0 82.5 475.5 70.1 478.4 60.0C487.2 30.1 511.7 7.4 541.0 2.0C551.0 0.1 567.1 0.5 576.5 2.9C592.0 6.9 608.8 17.1 618.4 28.4L623.2 33.9L628.0 28.1C647.9 4.2 685.0 -5.6 715.7 4.9C736.9 12.2 756.1 29.7 764.3 49.5C770.9 65.3 770.4 58.6 770.8 146.2L771.1 226.0L755.6 226.0L740.1 226.0L739.8 148.8L739.5 71.5L737.2 65.6C729.4 44.9 711.1 32.0 689.5 32.0C666.4 32.0 646.3 47.4 640.5 69.5C639.2 74.6 639.0 86.3 639.0 150.7L639.0 226.0L623.0 226.0L607.0 226.0L607.0 150.2C607.0 101.6 606.6 72.9 605.9 70.0C604.1 61.9 598.8 52.8 592.4 46.5C582.6 36.8 571.0 32.0 556.9 32.0C534.9 32.0 515.7 46.3 509.0 67.9C507.1 74.0 507.0 77.2 507.0 150.1L507.0 226.0L491.0 226.0L475.0 226.0L475.0 153.7ZM1039.0 206.2C1039.0 183.8 1040.2 172.2 1043.6 160.0C1046.6 149.3 1055.4 131.5 1061.9 123.0C1068.4 114.4 1081.9 101.5 1089.7 96.4L1096.0 92.3L1091.9 90.1C1079.3 83.0 1062.9 65.8 1054.4 50.8C1047.3 38.2 1042.0 22.7 1040.5 10.2L1039.8 4.0L1055.4 4.0C1067.1 4.0 1071.2 4.3 1071.4 5.2C1071.6 5.9 1072.5 10.0 1073.5 14.2C1076.7 28.8 1085.1 43.1 1097.1 54.5C1104.9 61.9 1107.7 63.9 1116.6 68.4C1165.0 92.6 1225.0 61.8 1233.5 8.3L1234.2 4.0L1249.7 4.0L1265.2 4.0L1264.5 10.7C1262.8 26.7 1254.0 48.0 1243.3 62.6C1236.5 71.7 1225.4 82.3 1216.2 88.5L1209.9 92.7L1216.7 97.1C1232.0 107.1 1248.2 126.8 1256.1 145.1C1263.9 163.2 1266.0 175.4 1266.0 204.8L1266.0 226.0L1250.6 226.0L1235.3 226.0L1234.7 202.8C1234.1 178.9 1233.3 172.8 1228.9 161.0C1222.0 142.2 1204.0 123.4 1185.5 115.7C1172.8 110.4 1168.4 109.5 1153.0 109.5C1136.3 109.5 1130.4 110.8 1117.3 117.1C1096.6 127.0 1081.1 145.2 1074.4 167.5C1071.8 176.0 1071.7 177.9 1071.2 201.2L1070.8 226.0L1054.9 226.0L1039.0 226.0L1039.0 206.2ZM357.6 195.1C386.9 189.0 411.8 165.9 420.0 137.0C422.7 127.6 423.6 111.9 422.1 102.2C417.2 70.9 395.4 45.8 364.5 36.0C353.9 32.6 334.4 32.1 322.8 34.9C293.1 42.0 271.0 62.7 261.9 92.0C259.9 98.4 259.6 101.7 259.5 114.0C259.5 126.2 259.9 129.8 261.8 136.3C274.0 178.4 315.4 203.8 357.6 195.1ZM916.4 125.1L973.3 68.2L971.5 65.3C966.0 56.9 951.3 45.3 939.3 39.9C927.7 34.6 917.3 32.7 902.5 33.3C884.3 34.0 872.2 38.1 857.5 48.5C822.0 73.6 813.1 123.3 837.4 159.8C841.5 165.9 857.0 182.0 858.8 182.0C859.2 182.0 885.1 156.4 916.4 125.1Z"></path></svg><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Zamex</span></a>
+<nav aria-label="Main" class="fx-links" style="gap: 2px; flex-grow: 1; justify-content: center; font-size: 14px; font-weight: 500">
+<a href="index.html#otc" style="padding: 8px 14px; border-radius: 999px; text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.c.navOtc}</a>
+<a href="index.html#how" style="padding: 8px 14px; border-radius: 999px; text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.c.navHow}</a>
+<a href="index.html#security" style="padding: 8px 14px; border-radius: 999px; text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.c.navSecurity}</a>
+<a href="contact.html" style="padding: 8px 14px; border-radius: 999px; text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.c.navContact}</a>
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 8px">
+<button type="button" onClick="${v.toggleTheme}" aria-label="${v.themeLabel}" title="${v.themeLabel}" class="zx-press" style="flex-shrink: 0; width: 40px; height: 40px; padding: 0; border-radius: 50%; border: 1px solid rgba(var(--zx-ink-rgb),0.12); background: var(--zx-glass); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--zx-ink)">
+${(v.isDark) ? html`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"></path></svg>` : null}
+${(v.isLight) ? html`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"></path></svg>` : null}
+</button>
+<div role="group" aria-label="${v.c.langLabel}" style=" display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(var(--zx-ink-rgb),0.06)">
+${(v.langs || []).map((lg) => html`
+<button type="button" onClick="${lg.pick}" aria-pressed="${lg.sel}" style="min-width: 44px; min-height: 36px; padding: 0 10px; border: 0; border-radius: 999px; background: ${lg.bg}; color: ${lg.fg}; cursor: pointer; font: 600 13px Onest, system-ui, sans-serif">${lg.code}</button>
+`)}
+</div>
+</div>
+</div>
+</header>
+
+<main>
+<section style="padding: clamp(56px, 9vh, 96px) clamp(20px, 6vw, 104px) 40px">
+<div class="fx-up" style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+<span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: var(--zx-surface); border: 1px solid rgba(var(--zx-ink-rgb),0.1); font-size: 14px; font-weight: 500"><span style="width: 8px; height: 8px; border-radius: 50%; background: #FF6A2B"></span>${v.t.badge}</span>
+<h1 style="margin: 0; max-width: 16em; font-size: clamp(38px, 5vw, 68px); font-weight: 500; line-height: 1.04; letter-spacing: -0.04em; text-wrap: balance">${v.t.h1}</h1>
+<p style="margin: 0; max-width: 34em; font-size: 18px; line-height: 1.6; color: rgba(var(--zx-ink-rgb),0.65)">${v.t.sub}</p>
+</div>
+</section>
+
+<section style="padding: 0 clamp(20px, 6vw, 104px) 40px">
+<div class="fx-up" style="animation-delay: .12s; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr)); border-radius: 32px; overflow: hidden; background: var(--zx-surface); box-shadow: 0 30px 60px -40px rgba(var(--zx-ink-rgb),0.35)">
+
+<aside style="position: relative; overflow: hidden; min-height: 520px; padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; justify-content: space-between; gap: 32px; background: #0B2239; color: #FFFFFF">
+<img src="assets/gold-bars.jpg" alt="" class="fx-kb" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 70%" />
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,34,57,0.9) 0%, rgba(11,34,57,0.35) 38%, rgba(11,34,57,0.45) 60%, rgba(11,34,57,0.95) 100%)"></div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; max-width: 12em; font-size: clamp(26px, 2.6vw, 36px); font-weight: 500; line-height: 1.1; letter-spacing: -0.03em">${v.t.panelTitle}</h2>
+<p style="margin: 0; max-width: 26em; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.75)">${v.t.panelText}</p>
+</div>
+<div style="position: relative">
+<ol style="margin: 0; padding: 0; list-style: none; display: grid; gap: 14px">${(v.stepList || []).map((s) => html`<li style="display: flex; align-items: center; gap: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.16)"><span style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: #FF6A2B; color: #06101C; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">${s.n}</span><span style="font-size: 16px; font-weight: 500">${s.label}</span></li>`)}</ol>
+</div>
+</aside>
+
+<div style="padding: clamp(28px, 4vw, 48px)">
+${(v.sent) ? html`
+<div role="status" class="fx-up" style="min-height: 420px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 16px">
+<span style="width: 56px; height: 56px; border-radius: 50%; background: var(--zx-btn); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF8A57" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span>
+<h2 style="margin: 0; font-size: clamp(28px, 3vw, 38px); font-weight: 500; letter-spacing: -0.03em">${v.t.okTitle}</h2>
+<p style="margin: 0; max-width: 28em; font-size: 16px; line-height: 1.6; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.okText}</p>
+<button type="button" onClick="${v.again}" class="fx-pill" style="min-height: 48px; padding: 0 22px; border: 1px solid rgba(var(--zx-ink-rgb),0.18); border-radius: 999px; background: transparent; color: var(--zx-ink); cursor: pointer; font: 500 15px Onest, system-ui, sans-serif">${v.t.again}</button>
+</div>
+` : null}
+${(v.notSent) ? html`
+<div style="display: flex; flex-direction: column; gap: 20px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 20px">
+<div class="${v.cls.name}" style="display: flex; flex-direction: column; gap: 8px">
+<label for="fx-name" style="font-size: 14px; font-weight: 500; color: var(--zx-ink)">${v.t.f_name}</label>
+<input id="fx-name" class="fx-in" type="text" autoComplete="name" placeholder="${v.t.p_name}" onInput="${v.on.name}" />
+${(v.e.name) ? html`<span role="alert" style="font-size: 13px; color: #C2410C">${v.e.name}</span>` : null}
+</div>
+<div class="${v.cls.company}" style="display: flex; flex-direction: column; gap: 8px">
+<label for="fx-company" style="font-size: 14px; font-weight: 500; color: var(--zx-ink)">${v.t.f_company}</label>
+<input id="fx-company" class="fx-in" type="text" autoComplete="organization" placeholder="${v.t.p_company}" onInput="${v.on.company}" />
+${(v.e.company) ? html`<span role="alert" style="font-size: 13px; color: #C2410C">${v.e.company}</span>` : null}
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 20px">
+<div class="${v.cls.email}" style="display: flex; flex-direction: column; gap: 8px">
+<label for="fx-email" style="font-size: 14px; font-weight: 500; color: var(--zx-ink)">${v.t.f_email}</label>
+<input id="fx-email" class="fx-in" type="email" autoComplete="email" placeholder="${v.t.p_email}" onInput="${v.on.email}" />
+${(v.e.email) ? html`<span role="alert" style="font-size: 13px; color: #C2410C">${v.e.email}</span>` : null}
+</div>
+<div class="${v.cls.contact}" style="display: flex; flex-direction: column; gap: 8px">
+<label for="fx-contact" style="font-size: 14px; font-weight: 500; color: var(--zx-ink)">${v.t.f_contact}</label>
+<input id="fx-contact" class="fx-in" type="text" autoComplete="tel" placeholder="${v.t.p_contact}" onInput="${v.on.contact}" />
+${(v.e.contact) ? html`<span role="alert" style="font-size: 13px; color: #C2410C">${v.e.contact}</span>` : null}
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 20px">
+<div class="${v.cls.country}" style="display: flex; flex-direction: column; gap: 8px">
+<label for="fx-country" style="font-size: 14px; font-weight: 500; color: var(--zx-ink)">${v.t.f_country}</label>
+<div style="position: relative">
+<select id="fx-country" class="fx-in" onChange="${v.on.country}">
+<option value="">${v.t.choose}</option>
+${(v.countries || []).map((o) => html`<option value="${o.v}">${o.label}</option>`)}
+</select>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="stroke: var(--zx-ink); position: absolute; right: 16px; top: 50%; margin-top: -8px; pointer-events: none"><path d="M6 9l6 6 6-6"></path></svg>
+</div>
+${(v.e.country) ? html`<span role="alert" style="font-size: 13px; color: #C2410C">${v.e.country}</span>` : null}
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 14px; font-weight: 500">${v.t.f_side}</span>
+<div role="group" aria-label="${v.t.f_side}" style="display: flex; gap: 8px">
+<button type="button" class="fx-seg" onClick="${v.pickBuy}" aria-pressed="${v.buySel}" style="background: ${v.buyBg}; color: ${v.buyFg}">${v.t.buy}</button>
+<button type="button" class="fx-seg" onClick="${v.pickSell}" aria-pressed="${v.sellSel}" style="background: ${v.sellBg}; color: ${v.sellFg}">${v.t.sell}</button>
+</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 20px">
+<div class="${v.cls.asset}" style="display: flex; flex-direction: column; gap: 8px">
+<label for="fx-asset" style="font-size: 14px; font-weight: 500; color: var(--zx-ink)">${v.t.f_asset}</label>
+<div style="position: relative">
+<select id="fx-asset" class="fx-in" onChange="${v.on.asset}">
+<option value="">${v.t.choose}</option>
+${(v.assets || []).map((o) => html`<option value="${o.v}">${o.label}</option>`)}
+</select>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="stroke: var(--zx-ink); position: absolute; right: 16px; top: 50%; margin-top: -8px; pointer-events: none"><path d="M6 9l6 6 6-6"></path></svg>
+</div>
+${(v.e.asset) ? html`<span role="alert" style="font-size: 13px; color: #C2410C">${v.e.asset}</span>` : null}
+</div>
+<div class="${v.cls.ccy}" style="display: flex; flex-direction: column; gap: 8px">
+<label for="fx-ccy" style="font-size: 14px; font-weight: 500; color: var(--zx-ink)">${v.t.f_ccy}</label>
+<div style="position: relative">
+<select id="fx-ccy" class="fx-in" onChange="${v.on.ccy}">
+<option value="">${v.t.choose}</option>
+${(v.ccys || []).map((o) => html`<option value="${o.v}">${o.label}</option>`)}
+</select>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="stroke: var(--zx-ink); position: absolute; right: 16px; top: 50%; margin-top: -8px; pointer-events: none"><path d="M6 9l6 6 6-6"></path></svg>
+</div>
+${(v.e.ccy) ? html`<span role="alert" style="font-size: 13px; color: #C2410C">${v.e.ccy}</span>` : null}
+</div>
+</div>
+<div class="${v.cls.amount}" style="display: flex; flex-direction: column; gap: 8px">
+<label for="fx-amount" style="font-size: 14px; font-weight: 500; color: var(--zx-ink)">${v.t.f_amount}</label>
+<input id="fx-amount" class="fx-in" type="text" autoComplete="off" placeholder="${v.t.p_amount}" onInput="${v.on.amount}" />
+${(v.e.amount) ? html`<span role="alert" style="font-size: 13px; color: #C2410C">${v.e.amount}</span>` : null}
+</div>
+<div class="${v.cls.msg}" style="display: flex; flex-direction: column; gap: 8px">
+<label for="fx-msg" style="font-size: 14px; font-weight: 500; color: var(--zx-ink)">${v.t.f_msg}</label>
+<textarea id="fx-msg" class="fx-in" placeholder="${v.t.p_msg}" onInput="${v.on.msg}"></textarea>
+${(v.e.msg) ? html`<span role="alert" style="font-size: 13px; color: #C2410C">${v.e.msg}</span>` : null}
+</div>
+<button type="button" onClick="${v.submit}" class="fx-pill" style="margin-top: 8px; display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 56px; padding: 6px 6px 6px 26px; border: 0; border-radius: 999px; background: var(--zx-btn); color: var(--zx-btn-ink); cursor: pointer; font: 500 16px Onest, system-ui, sans-serif">
+<span>${v.btnText}</span>
+<span style="width: 44px; height: 44px; border-radius: 50%; background: #FF6A2B; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#06101C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+</button>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: rgba(var(--zx-ink-rgb),0.55)">${v.t.note}</p>
+</div>
+` : null}
+</div>
+
+</div>
+</section>
+</main>
+
+<footer style="padding: 32px clamp(20px, 6vw, 104px) 40px">
+<div style="max-width: 1240px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(var(--zx-ink-rgb),0.12); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: rgba(var(--zx-ink-rgb),0.6)">
+<span>${v.c.copy}</span>
+<a href="mailto:info@zamex.tj" style="color: rgba(var(--zx-ink-rgb),0.7); text-decoration: none">info@zamex.tj</a>
+</div>
+</footer>
+</div>
+`;
+};
+render(h(Page, {"startLang": "ru"}), document.getElementById("app"));
+</script>
+<noscript><p style="font-family:sans-serif;padding:24px">Zamex — please enable JavaScript to view this site, or email info@zamex.tj.</p></noscript>
+</body>
+</html>

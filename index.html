@@ -1,0 +1,1283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zamex — home page</title>
+<meta name="description" content="Zamex — corporate OTC desk, settlement and digital asset operations across Central Asia.">
+<meta name="theme-color" content="#0B1828">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&amp;family=Onest:wght@400;500;600;700&amp;family=Source+Serif+4:wght@600&amp;family=Unbounded:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F5F5}
+a{color:#0A1626}a:hover{color:#C2410C}
+button:focus-visible,a:focus-visible{outline:2px solid #FF8A57;outline-offset:3px}
+@property --zx-a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes zx-rot{to{--zx-a:360deg}}
+@keyframes zx-blur-in{from{opacity:0;filter:blur(14px);transform:translateY(22px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes zx-drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(140px,80px) scale(1.25)}}
+@keyframes zx-drift2{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-160px,60px) scale(.9)}}
+@keyframes zx-drift3{0%,100%{transform:translate(0,0)}50%{transform:translate(80px,-90px)}}
+@keyframes zx-tilt{0%,100%{transform:perspective(1200px) rotateX(12deg) rotateY(-16deg) translateY(0)}50%{transform:perspective(1200px) rotateX(5deg) rotateY(-5deg) translateY(-14px)}}
+@keyframes zx-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes zx-dash{to{stroke-dashoffset:-160}}
+@keyframes zx-pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(4.5);opacity:0}}
+@keyframes zx-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes zx-orbit{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes zx-shine{from{background-position:120% 0}to{background-position:-120% 0}}
+@keyframes zx-sweep{0%,55%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+@keyframes zx-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes zx-bar{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+@keyframes zx-spin{to{transform:rotate(360deg)}}
+.zx-word{display:inline-block;animation:zx-blur-in 1s cubic-bezier(.2,.7,.2,1) both}
+.zx-grid{background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000 25%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000 25%,transparent 75%)}
+.zx-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.zx-o1{animation:zx-drift1 18s ease-in-out infinite}
+.zx-o2{animation:zx-drift2 22s ease-in-out infinite}
+.zx-o3{animation:zx-drift3 16s ease-in-out infinite}
+.zx-glass{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.zx-glow{border:1px solid transparent;background:linear-gradient(var(--zx-fill,#0A1626),var(--zx-fill,#0A1626)) padding-box,conic-gradient(from var(--zx-a),rgba(255,255,255,.08) 0deg,rgba(255,255,255,.08) 200deg,#FF6A2B 255deg,#FFD2BD 285deg,rgba(255,255,255,.08) 330deg) border-box;animation:zx-rot 6s linear infinite}
+.zx-tilt{animation:zx-tilt 9s ease-in-out infinite;transform-style:preserve-3d}
+.zx-float{animation:zx-float 6s ease-in-out infinite}
+.zx-float2{animation:zx-float 7s ease-in-out -3s infinite}
+.zx-flow{stroke-dasharray:5 11;animation:zx-dash 5s linear infinite}
+.zx-pulse{transform-box:fill-box;transform-origin:center;animation:zx-pulse 2.6s ease-out infinite}
+.zx-marquee{animation:zx-marquee 40s linear infinite}
+.zx-mask-x{-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.zx-token{position:absolute;left:0;top:0;offset-path:path('M 40 270 A 200 92 0 1 1 440 270 A 200 92 0 1 1 40 270');offset-rotate:0deg;animation:zx-orbit 18s linear infinite}
+.zx-shine-text{background:linear-gradient(100deg,#EEF2F7 30%,#FF8A57 45%,#FFD2BD 50%,#EEF2F7 65%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:zx-shine 7s linear infinite}
+.zx-btn{position:relative;overflow:hidden;isolation:isolate}
+.zx-btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);animation:zx-sweep 3.8s ease-in-out infinite}
+.zx-stage{transform-origin:left;animation:zx-fill .9s ease-out both}
+.zx-bar{transform-box:fill-box;transform-origin:bottom;animation:zx-bar 2.6s ease-in-out infinite}
+.zx-spin-fast{transform-box:fill-box;transform-origin:center;animation:zx-spin 3s linear infinite}
+.zx-line{transform-origin:left}
+@keyframes zx-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes zx-scale{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
+@keyframes zx-fade{from{opacity:0}to{opacity:1}}
+@keyframes zx-left{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
+@keyframes zx-breathe{0%,100%{opacity:.82}50%{opacity:1}}
+.zx-up{animation:zx-up .6s ease-out 1.75s both}
+.zx-up2{animation:zx-up .8s ease-out 2.15s both}
+.zx-scale{animation:zx-scale .8s ease-out 1.95s both}
+.zx-fade{animation:zx-fade .8s ease-out 2.15s both}
+.zx-left{animation:zx-left .8s ease-out 1.95s both}
+.zx-planet{animation:zx-breathe 7s ease-in-out infinite}
+.zx-press{transition:transform .2s ease,background-color .2s ease}
+.zx-press:hover{transform:scale(1.02)}
+.zx-press:active{transform:scale(.98)}
+.zx-navlink{transition:opacity .2s}
+.zx-navlink:hover{opacity:.7}
+.zx-frame{border-radius:48px}
+.zx-corner{border-top-left-radius:48px}
+.zx-mask-t{top:-48px;width:48px;height:48px}
+.zx-mask-l{left:-48px;width:48px;height:48px}
+.zx-bl{left:40px;bottom:40px}
+@media (max-width: 860px){.zx-md{display:none !important}}
+@keyframes zx-kb{from{transform:scale(1)}to{transform:scale(1.08) translate(-1%,1%)}}
+.zx-kb{animation:zx-kb 14s ease-in-out infinite alternate}
+.zx-js .zx-reveal{opacity:0;transform:translateY(56px);filter:blur(12px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1),filter 1s cubic-bezier(.16,1,.3,1),clip-path 1.2s cubic-bezier(.16,1,.3,1)}
+.zx-js .zx-reveal.zx-in{opacity:1;transform:none;filter:none}
+.zx-js .zx-reveal:nth-child(2){transition-delay:.08s}
+.zx-js .zx-reveal:nth-child(3){transition-delay:.16s}
+.zx-js .zx-reveal:nth-child(4){transition-delay:.24s}
+.zx-js .zx-reveal:nth-child(5){transition-delay:.32s}
+.zx-js .zx-reveal:nth-child(6){transition-delay:.4s}
+.zx-js h2.zx-reveal{filter:none;transform:translateY(40%);clip-path:inset(0 0 100% 0)}
+.zx-js h2.zx-reveal.zx-in{transform:none;clip-path:inset(-20% -5% -20% -5%)}
+.zx-js .zx-reveal h2{transform:translateY(40%);clip-path:inset(0 0 100% 0);transition:transform 1.1s cubic-bezier(.16,1,.3,1) .12s,clip-path 1.1s cubic-bezier(.16,1,.3,1) .12s}
+.zx-js .zx-reveal.zx-in h2{transform:none;clip-path:inset(-20% -5% -20% -5%)}
+.zx-js .zx-media.zx-reveal{filter:none;transform:scale(.88);clip-path:inset(5% 5% 5% 5% round 40px)}
+.zx-js .zx-media.zx-reveal.zx-in{transform:none;clip-path:inset(0% 0% 0% 0% round 24px)}
+.zx-media > img,.zx-media > video{scale:1.14;translate:0 calc(var(--p, 0) * -48px)}
+.zx-js .zx-line{transform:scaleX(0);transition:transform 1.6s cubic-bezier(.16,1,.3,1) .2s}
+.zx-js .zx-line.zx-in{transform:scaleX(1)}
+.zx-js .zm-card{opacity:0;transform:translateY(80px) scale(.94);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
+.zx-js .zm-card:nth-child(2){transition-delay:.12s}
+.zx-js .zm-card:nth-child(3){transition-delay:.24s}
+.zx-js .zm-card.zx-in{opacity:1;transform:none}
+.zx-js .zm-card .zm-title,.zx-js .zm-card .zm-art,.zx-js .zm-card .zm-metric,.zx-js .zm-card .zm-caption,.zx-js .zm-card .zm-more{opacity:0;translate:0 14px;transition:opacity .8s cubic-bezier(.16,1,.3,1),translate .9s cubic-bezier(.16,1,.3,1)}
+.zx-js .zm-card .zm-title{transition-delay:.3s}
+.zx-js .zm-card .zm-art{transition-delay:.42s}
+.zx-js .zm-card .zm-metric{transition-delay:.56s}
+.zx-js .zm-card .zm-caption{transition-delay:.68s}
+.zx-js .zm-card .zm-more{transition-delay:.8s}
+.zx-js .zm-card.zx-in .zm-title,.zx-js .zm-card.zx-in .zm-art,.zx-js .zm-card.zx-in .zm-metric,.zx-js .zm-card.zx-in .zm-caption,.zx-js .zm-card.zx-in .zm-more{opacity:1;translate:none}
+.zx-js .zm-card.zx-in .zm-map{opacity:.78}
+.zx-js .zm-masthead .zm-line{clip-path:inset(0 0 100% 0);translate:0 .5em;transition:clip-path 1s cubic-bezier(.16,1,.3,1),translate 1s cubic-bezier(.16,1,.3,1)}
+.zx-js .zm-masthead .zm-l2{transition-delay:.1s}
+.zx-js .zm-masthead .zm-intro{opacity:0;translate:0 12px;transition:opacity .9s ease .2s,translate .9s cubic-bezier(.16,1,.3,1) .2s}
+.zx-js .zm-masthead.zx-in .zm-line{clip-path:inset(-10% -2% -10% -2%);translate:none}
+.zx-js .zm-masthead.zx-in .zm-intro{opacity:1;translate:none}
+.zx-frame{transform:scale(calc(1 - var(--hp, 0) * .06));transform-origin:50% 0}
+.zx-herotext{transform:translateY(calc(var(--hp, 0) * -90px));opacity:calc(1 - var(--hp, 0) * 1.3)}
+.zx-heroorb{translate:0 calc(var(--hp, 0) * 140px)}
+.zx-mob{display:none}
+@media (max-width: 860px){.zx-mob{display:inline-flex}}
+@media (max-width: 640px){
+.zx-hide-sm{display:none !important}
+.zx-mob span{display:none}
+#otc{padding-top:72px !important}
+section[style*="96px"]{padding-bottom:64px !important}
+#how{padding-top:64px !important}
+.zx-uc{min-height:500px !important}
+.zx-herotext{padding-top:36px !important}
+.zx-heroorb{top:72% !important}
+.zx-cards > div{min-height:280px !important}
+.zm-stage{padding-top:48px !important}
+}
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:96px}
+.zx-snav{position:fixed;top:12px;left:0;right:0;z-index:60;padding:0 12px;pointer-events:none;transform:translateY(-150%);opacity:0;transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .35s ease}
+.zx-snav.zx-snav--show{transform:none;opacity:1}
+.zx-snav-in{position:relative;pointer-events:auto;max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:7px 7px 7px 22px;border-radius:999px;background:rgba(248,248,248,.74);-webkit-backdrop-filter:saturate(1.6) blur(18px);backdrop-filter:saturate(1.6) blur(18px);border:1px solid rgba(10,22,38,.08);box-shadow:0 14px 36px -20px rgba(10,22,38,.45)}
+.zx-snl{padding:8px 14px;border-radius:999px;color:rgba(10,22,38,.68);text-decoration:none;font-size:14px;font-weight:500;white-space:nowrap;transition:color .2s,background-color .25s}
+.zx-snl:hover{color:#0A1626;background:rgba(10,22,38,.04)}
+.zx-snl.zx-active{color:#0A1626;background:rgba(10,22,38,.07)}
+.zx-snav-prog{position:absolute;left:24px;right:24px;bottom:-1px;height:2px;border-radius:2px;background:#FF6A2B;transform-origin:left;transform:scaleX(var(--sp, 0));opacity:.85}
+@media (max-width: 640px){.zx-snav-in{padding-left:18px}}
+.zx-intro{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;background:#FFFFFF;pointer-events:none;animation:zx-intro-out .55s cubic-bezier(.4,0,.2,1) 1.6s forwards}
+.zx-intro-logo{width:min(54vw,440px);color:#FF6A2B;clip-path:inset(0 100% 0 0);animation:zx-intro-wipe .75s cubic-bezier(.65,0,.35,1) .35s forwards}
+.zx-intro-foot{position:absolute;bottom:28px;left:0;right:0;margin:0;text-align:center;font-size:12px;color:rgba(10,22,38,.45);opacity:0;animation:zx-fade .5s ease .2s forwards}
+@keyframes zx-intro-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes zx-intro-out{0%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+:root{--zx-gutter:clamp(20px,6vw,104px);--zx-frame:clamp(10px,2.6vw,40px)}
+main section:not(#top),body section:not(#top):not(.zm-stage){padding-left:var(--zx-gutter) !important;padding-right:var(--zx-gutter) !important}
+footer > div{padding-left:var(--zx-gutter) !important;padding-right:var(--zx-gutter) !important}
+#top{padding-left:var(--zx-frame) !important;padding-right:var(--zx-frame) !important}
+.zm-stage{margin-left:var(--zx-frame) !important;margin-right:var(--zx-frame) !important;--gutter:clamp(20px,5vw,88px) !important}
+.zx-heroimg{object-position:22% 40%;transform:scale(1.04);scale:calc(1 + var(--hp, 0) * .08);transform-origin:70% 40%;animation:zx-heroin 2.4s cubic-bezier(.16,1,.3,1) 1.5s both}
+@keyframes zx-heroin{from{transform:scale(1.14)}to{transform:scale(1.04)}}
+.zx-heroshade{background:linear-gradient(90deg,rgba(6,16,28,.8) 0%,rgba(6,16,28,.55) 26%,rgba(6,16,28,.12) 44%,rgba(6,16,28,0) 56%),linear-gradient(180deg,rgba(6,16,28,.45) 0%,rgba(6,16,28,0) 22%,rgba(6,16,28,0) 72%,rgba(6,16,28,.35) 100%)}
+@media (max-width: 760px){.zx-heroimg{object-position:64% 50%}.zx-heroshade{background:linear-gradient(180deg,rgba(6,16,28,.8) 0%,rgba(6,16,28,.55) 38%,rgba(6,16,28,.05) 62%,rgba(6,16,28,.45) 100%)}}
+.zm-stage{display:none !important}
+.zx-tmask{-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000000 12%,#000000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000000 12%,#000000 88%,transparent 100%)}
+@media (max-width: 810px){.zx-trusted{flex-direction:column;align-items:flex-start !important;gap:20px !important}.zx-trusted .zx-tmask{width:100%}}
+.zx-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.zx-span2{grid-column:span 2}
+.zx-span3{grid-column:span 3}
+.zx-pill{transition:transform .2s ease,opacity .2s ease}
+.zx-pill:hover{opacity:.88}
+.zx-pill:active{transform:scale(.98)}
+@media (max-width: 1100px){.zx-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.zx-span3{grid-column:auto}}
+@media (max-width: 640px){.zx-cards{grid-template-columns:minmax(0,1fr)}.zx-span2{grid-column:auto}}
+@media (max-width: 640px){
+.zx-frame{border-radius:26px}
+.zx-corner{border-top-left-radius:26px;padding:20px 16px 16px 30px !important;gap:12px !important}
+.zx-mask-t{top:-26px;width:26px;height:26px}
+.zx-mask-l{left:-26px;width:26px;height:26px}
+.zx-bl{left:auto;right:16px;bottom:120px}
+}
+.zm-stage{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;min-height:100vh;box-sizing:border-box;background:#ECECEB;--gap:clamp(8px,1.5vw,23px);--gutter:clamp(14px,3.6vw,54px);--content-max:calc(3 * 429px + 2 * var(--gap));padding:clamp(56px,9.6vh,94px) var(--gutter) clamp(40px,6vh,72px);margin:12px;border-radius:48px}
+.zm-bg{position:absolute;z-index:-1;border-radius:50%;filter:blur(90px);pointer-events:none}
+.zm-bg1{width:620px;height:620px;left:-160px;top:-180px;background:#FFD9C4;opacity:.7;animation:zx-drift1 20s ease-in-out infinite}
+.zm-bg2{width:560px;height:560px;right:-140px;bottom:-200px;background:#D6E0F0;opacity:.8;animation:zx-drift2 24s ease-in-out infinite}
+.zm-masthead,.zm-cards{width:min(100%,var(--content-max));margin-inline:auto}
+.zm-masthead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,clamp(260px,32vw,483px));gap:clamp(16px,3vw,40px);align-items:start}
+.zm-headline{margin:0;color:#0A1626;font-family:Onest,"Segoe UI",system-ui,sans-serif;font-size:clamp(36px,4.2vw,56px);font-weight:500;letter-spacing:-0.035em;line-height:1.08}
+.zm-line{display:flex;flex-wrap:nowrap;align-items:center;white-space:nowrap}
+.zm-dotword{display:inline-block;flex:0 0 auto;height:.766em;margin-left:.319em;color:#D9480F;transform:translateY(.02em)}
+.zm-dotsvg{display:block;width:100%;height:100%;overflow:visible}
+.zm-intro{margin:.5em 0 0;color:rgba(10,22,38,0.65);font-family:Onest,"Segoe UI",system-ui,sans-serif;font-size:17px;letter-spacing:0;line-height:1.6}
+.zm-cards{container-type:inline-size;display:flex;justify-content:space-between;align-items:center;gap:var(--gap);margin-top:clamp(28px,9.4vh,92px);--card-w:min((100cqw - 2 * var(--gap)) / 3, 429px)}
+.zm-card{font-family:Onest,"Segoe UI",system-ui,sans-serif;container-type:inline-size;position:relative;flex:0 0 auto;overflow:hidden;width:var(--card-w);aspect-ratio:429/554;border:1px solid rgba(255,255,255,.36);border-radius:calc(var(--card-w) * 17 / 429);color:#fff;--u:calc(100cqw / 429);box-shadow:0 2px 4px rgba(30,28,50,.3),inset 0 1px 0 rgba(255,255,255,.24)}
+.zm-card::before{content:"";position:absolute;inset:0;z-index:1;mix-blend-mode:screen;pointer-events:none;background:linear-gradient(102deg,rgba(255,255,255,.10),transparent 28%,rgba(255,255,255,.08) 62%,transparent 88%),radial-gradient(ellipse 85% 34% at 54% 7%,rgba(255,255,255,.24),transparent 72%)}
+.zm-grain{position:absolute;z-index:2;inset:-8%;width:116%;height:116%;opacity:.46;mix-blend-mode:soft-light;pointer-events:none}
+.zm-c1{background:radial-gradient(ellipse 68% 45% at -4% -3%,rgba(214,228,255,.55) 0%,rgba(200,215,245,.28) 46%,transparent 77%),radial-gradient(ellipse 70% 45% at 104% -4%,rgba(220,232,255,.6) 0%,rgba(200,215,245,.3) 48%,transparent 78%),radial-gradient(ellipse 64% 49% at -8% 106%,rgba(255,170,120,.46) 0%,rgba(255,140,90,.22) 49%,transparent 78%),radial-gradient(ellipse 64% 49% at 108% 106%,rgba(255,170,120,.4) 0%,rgba(255,140,90,.2) 49%,transparent 78%),radial-gradient(ellipse 93% 47% at 106% 58%,rgba(225,235,250,.32) 0%,transparent 76%),radial-gradient(ellipse 74% 40% at -8% 73%,rgba(255,180,140,.3) 0%,transparent 77%),radial-gradient(ellipse 77% 36% at 57% 58%,rgba(170,195,240,.2) 0%,transparent 78%),radial-gradient(ellipse 54% 30% at 50% 17%,rgba(5,15,40,.35) 0%,transparent 78%),linear-gradient(180deg,#2A4C82 0%,#1E3E70 38%,#183462 72%,#0B2239 100%);background-origin:border-box}
+.zm-c1 .zm-grain{opacity:.54}
+.zm-c2{background:radial-gradient(ellipse 118% 66% at 48% -8%,rgba(221,232,255,.065),transparent 74%),radial-gradient(ellipse 106% 52% at 48% 112%,rgba(255,155,139,.075),transparent 73%),radial-gradient(ellipse 82% 15% at 50% 29%,rgba(240,204,244,.24),transparent 81%),radial-gradient(ellipse 64% 18% at 50% 61%,rgba(239,177,208,.17),transparent 81%),radial-gradient(ellipse 43% 42% at -5% 30%,rgba(228,220,255,.53),transparent 78%),radial-gradient(ellipse 43% 42% at 105% 30%,rgba(245,200,210,.54),transparent 78%),radial-gradient(ellipse 70% 48% at 70% 110%,rgba(238,204,201,.62),transparent 77%),radial-gradient(ellipse 70% 23% at 78% 1%,rgba(251,208,226,.56),transparent 78%),radial-gradient(ellipse 78% 25% at 15% 8%,rgba(218,211,255,.54),transparent 79%),radial-gradient(ellipse 38% 31% at 80% 90%,rgba(230,190,191,.38),transparent 74%),radial-gradient(ellipse 45% 26% at 47% 78%,rgba(236,184,183,.45),transparent 73%),linear-gradient(164deg,#c9b5e1 0%,#ad80ca 29%,#9d4f72 64%,#793246 100%);background-origin:border-box}
+.zm-c2::before{mix-blend-mode:multiply;opacity:.54;background:radial-gradient(ellipse 18% 23% at 20% 32%,rgba(103,41,148,.24),transparent 76%),radial-gradient(ellipse 20% 24% at 81% 30%,rgba(121,34,113,.22),transparent 76%),radial-gradient(ellipse 66% 9% at 50% 30%,rgba(103,33,125,.26),transparent 82%),radial-gradient(ellipse 68% 8% at 50% 69%,rgba(86,27,64,.23),transparent 83%),linear-gradient(103deg,rgba(255,255,255,.08),transparent 31%,rgba(255,255,255,.05) 63%,transparent 88%)}
+.zm-c2 .zm-grain{opacity:.68}
+.zm-c3{background:radial-gradient(ellipse 54% 14% at 56% 0%,rgba(255,206,190,.16),transparent 76%),radial-gradient(ellipse 38% 24% at 102% 8%,rgba(255,190,164,.24),transparent 75%),radial-gradient(ellipse 28% 24% at -5% 66%,rgba(255,192,174,.30),transparent 74%),radial-gradient(ellipse 46% 30% at 104% 32%,rgba(255,146,52,.42),transparent 74%),radial-gradient(ellipse 80% 36% at 62% 57%,rgba(255,141,36,.62),transparent 72%),radial-gradient(ellipse 58% 30% at 6% 103%,rgba(199,49,45,.38),transparent 76%),radial-gradient(ellipse 60% 32% at 97% 101%,rgba(190,40,44,.42),transparent 76%),linear-gradient(177deg,#d84736 0%,#dd523c 24%,#e8703d 52%,#de5641 78%,#d34239 100%);background-origin:border-box}
+.zm-c3::before{background:linear-gradient(102deg,rgba(255,255,255,.07),transparent 30%,rgba(255,255,255,.05) 62%,transparent 88%),radial-gradient(ellipse 84% 26% at 54% 4%,rgba(255,255,255,.11),transparent 74%)}
+.zm-c3 .zm-grain{opacity:.58}
+.zm-gauge{position:absolute;z-index:2;top:27.63%;left:10.5%;width:79%;height:59%;overflow:visible}
+.zm-sweep{transform-box:view-box;transform-origin:163px 163px;animation:zm-sweep 6s ease-in-out infinite alternate}
+@keyframes zm-sweep{from{transform:rotate(-58deg)}to{transform:rotate(14deg)}}
+.zm-wall{position:absolute;z-index:0;inset:0;width:100%;height:100%;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 54%,rgba(0,0,0,.72) 58%,rgba(0,0,0,.18) 62%,transparent 65%);mask-image:linear-gradient(180deg,#000 0%,#000 54%,rgba(0,0,0,.72) 58%,rgba(0,0,0,.18) 62%,transparent 65%)}
+.zm-window{position:absolute;z-index:3;top:32.4%;left:20.4%;width:59%;height:30.1%;overflow:hidden;border-radius:calc(10 * var(--u));background:linear-gradient(0deg,rgba(255,255,255,.30) 0%,rgba(255,255,255,.15) 45%,rgba(255,255,255,0) 80%),linear-gradient(270deg,rgba(213,62,152,.62) 0px,rgba(213,62,152,0) calc(5 * var(--u))),radial-gradient(ellipse 118% 70% at 60% 8%,rgba(255,203,252,.34),transparent 74%),linear-gradient(105deg,rgba(250,232,250,.72) 0%,rgba(238,120,214,.68) 51%,rgba(222,86,177,.82) 100%);box-shadow:0 calc(13 * var(--u)) calc(25 * var(--u)) rgba(70,17,69,.31),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(calc(9 * var(--u))) saturate(1.08)}
+.zm-wlines{position:absolute;top:9%;left:6.7%;width:87%;height:24%;display:flex;flex-direction:column}
+.zm-wlines span{display:block}
+.zm-wl1{height:calc(6 * var(--u));border-radius:calc(2.5 * var(--u));background:rgba(255,255,255,.72);width:29%;margin-bottom:calc(3 * var(--u))}
+.zm-wl2{width:100%;height:calc(22 * var(--u));border-radius:calc(6 * var(--u));background:linear-gradient(90deg,rgba(255,240,253,.72),rgba(255,170,242,.75) 42%,rgba(255,108,235,.78));background-size:200% 100%;animation:zm-load 4s ease-in-out infinite alternate}
+.zm-wl3{width:86%;height:calc(6 * var(--u));border-radius:calc(2.5 * var(--u));background:rgba(255,255,255,.72);margin-top:calc(3 * var(--u));opacity:.64}
+@keyframes zm-load{from{background-position:0 0}to{background-position:100% 0}}
+.zm-map{position:absolute;z-index:2;top:21.7%;left:0;width:100%;height:43%;opacity:.78;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.46) 67%,rgba(0,0,0,.15) 83%,transparent 96%);mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.46) 67%,rgba(0,0,0,.15) 83%,transparent 96%)}
+.zm-flowline{stroke-dasharray:6 10;animation:zx-dash 4s linear infinite}
+.zm-title{position:absolute;z-index:4;top:6.1%;left:5%;width:90%;margin:0;color:rgba(255,255,255,.96);font-size:calc(22.95 * var(--u));font-weight:600;line-height:1.48;text-align:center;white-space:pre-line;text-shadow:0 1px 1px rgba(40,20,48,.14)}
+.zm-metric{position:absolute;z-index:5;left:0;width:100%;display:flex;align-items:flex-end;justify-content:center;color:rgba(255,255,255,.97);filter:drop-shadow(0 1px 1px rgba(60,27,54,.08))}
+.zm-num{display:block;height:auto;overflow:visible}
+.zm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.zm-caption{position:absolute;z-index:5;top:65.1%;left:10%;width:80%;margin:0;color:rgba(255,255,255,.87);font-size:calc(19.95 * var(--u));letter-spacing:calc(-.36 * var(--u));line-height:1.45;text-align:center;white-space:pre-line;text-shadow:0 1px 2px rgba(40,21,35,.16)}
+.zm-more{position:absolute;z-index:6;top:83.75%;left:50%;min-width:calc(111 * var(--u));height:calc(45 * var(--u));padding:0 calc(18 * var(--u));box-sizing:border-box;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;border-radius:999px;color:#2d2d2d;background:rgba(255,255,255,.97);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 1px 3px rgba(58,25,39,.08);font-size:calc(14 * var(--u));letter-spacing:calc(-.25 * var(--u));text-decoration:none;white-space:nowrap;transition:transform .18s ease,box-shadow .18s ease}
+.zm-more:hover{color:#2d2d2d;transform:translateX(-50%) translateY(calc(-2 * var(--u)));box-shadow:0 8px 20px rgba(58,25,39,.16)}
+.zm-more:focus-visible{outline:3px solid rgba(255,255,255,.78);outline-offset:3px}
+@keyframes zm-head{from{opacity:0;translate:0 .52em;clip-path:inset(0 0 56% 0)}to{opacity:1;translate:none;clip-path:inset(-8% -2% -8% -2%)}}
+@keyframes zm-card{from{opacity:.52;translate:0 10px;scale:.985}to{opacity:1;translate:none;scale:none}}
+@keyframes zm-rise{from{opacity:0;translate:0 8px;clip-path:inset(0 0 48% 0)}to{opacity:1;translate:none;clip-path:inset(-8% -2% -8% -2%)}}
+@keyframes zm-art{from{opacity:0;translate:0 10px;scale:.972;clip-path:inset(8% 4% 8% 4%)}to{opacity:1;translate:none;scale:none;clip-path:inset(-3%)}}
+@keyframes zm-metric{from{opacity:0;translate:0 7px;scale:.985;filter:blur(2.5px)}to{opacity:1;translate:none;scale:none;filter:none}}
+@media (min-width:768px) and (max-width:1180px) and (max-aspect-ratio:6/7){.zm-cards{display:grid;grid-template-columns:repeat(2,max-content);justify-content:center;--card-w:min((100cqw - var(--gap)) / 2, 429px)}.zm-card:last-child{grid-column:1/-1;justify-self:center}}
+@media (max-width:767px){.zm-stage{min-height:0;margin:8px;border-radius:26px}.zm-masthead{grid-template-columns:minmax(0,1fr)}.zm-line{flex-wrap:wrap;white-space:normal}.zm-cards{flex-direction:column;align-items:center;--card-w:min(100cqw,429px)}}
+.zx-theme-t{--zx-bg:#F5F5F5;--zx-surface:#FFFFFF;--zx-field:#F6F7F8;--zx-media:#DCDDDF;--zx-ink:#0A1626;--zx-ink-rgb:10,22,38;--zx-btn:#0A1626;--zx-btn-ink:#FFFFFF;--zx-fade-rgb:238,239,240;--zx-glass:rgba(255,255,255,0.6);--zx-navglass:rgba(248,248,248,0.8);transition:background-color .35s ease,color .35s ease}
+.zx-dark{--zx-bg:#07111E;--zx-surface:#0F1C2E;--zx-field:#0F1C2E;--zx-media:#0F1C2E;--zx-ink:#E6EBF1;--zx-ink-rgb:230,235,241;--zx-btn:#E6EBF1;--zx-btn-ink:#0A1626;--zx-fade-rgb:7,17,30;--zx-glass:rgba(255,255,255,0.08);--zx-navglass:rgba(12,24,40,0.78);color-scheme:dark}
+.zx-dark .zx-snav-in{background:rgba(12,24,40,.74);border-color:rgba(255,255,255,.1)}
+.zx-dark .zx-snl{color:rgba(230,235,241,.72)}
+.zx-dark .zx-snl:hover,.zx-dark .zx-snl.zx-active{color:#FFFFFF;background:rgba(255,255,255,.08)}
+.zx-dark .zx-bwlogo{filter:invert(1)}
+.zx-dark .fx-in{background:#0F1C2E;border-color:rgba(255,255,255,.14);color:#E6EBF1}
+.zx-dark .fx-in::placeholder{color:rgba(230,235,241,.4)}
+.zx-dark .fx-in:focus{background:#13233A;border-color:#E6EBF1;box-shadow:0 0 0 4px rgba(255,255,255,.08)}
+.zx-dark .fx-err .fx-in{background:#2A1610;border-color:#FF8A57}
+.zx-dark .fx-seg{border-color:rgba(255,255,255,.14)}
+.zx-dark a:hover{color:#FF8A57}
+@media (prefers-reduced-motion: reduce){*{animation:none !important}.zx-intro{display:none}}
+</style>
+<style>#app:empty{min-height:100vh;background:#F5F5F5}</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module">
+import { h, render, Component as PComponent } from "./vendor/preact.module.js";
+import htm from "./vendor/htm.module.js";
+import { FORM_ENDPOINT, GEO_ENDPOINT } from "./site-config.js";
+const html = htm.bind(h);
+let savedTheme = "light";
+try { savedTheme = localStorage.getItem("zamex-theme") === "dark" ? "dark" : "light"; } catch (e) {}
+let savedLang = "";
+try { savedLang = localStorage.getItem("zamex-lang") || ""; } catch (e) {}
+// Language: the visitor's own choice wins; otherwise pick by country; if unknown, Russian.
+const RU_COUNTRIES = ["RU", "BY", "KZ", "KG", "UZ", "TM", "AZ", "AM", "MD", "GE"];
+const langForCountry = (c) => !c ? "ru" : c === "TJ" ? "tg" : RU_COUNTRIES.includes(c) ? "ru" : "en";
+const geoLang = savedLang ? Promise.resolve(savedLang) : (() => {
+  try { const cached = sessionStorage.getItem("zamex-geo-lang"); if (cached) return Promise.resolve(cached); } catch (e) {}
+  const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 2500);
+  return fetch(GEO_ENDPOINT, { signal: ctrl.signal }).then((r) => r.json()).then((d) => langForCountry(String(d.country || "").toUpperCase()))
+    .catch(() => "ru").then((l) => { clearTimeout(timer); try { sessionStorage.setItem("zamex-geo-lang", l); } catch (e) {} return l; });
+})();
+let geoReady = "";
+try { geoReady = sessionStorage.getItem("zamex-geo-lang") || ""; } catch (e) {}
+class DCLogic extends PComponent {
+  constructor(props) {
+    super(props);
+    this.state = { theme: savedTheme };
+    if (savedLang) this.state.lang = savedLang; else if (geoReady) this.state.lang = geoReady;
+    if (!savedLang && !geoReady) geoLang.then((l) => { if (!this._langPicked) PComponent.prototype.setState.call(this, { lang: l }); });
+  }
+  setState(update, cb) {
+    try {
+      const u = typeof update === "function" ? null : update;
+      if (u && u.theme) localStorage.setItem("zamex-theme", u.theme);
+      if (u && u.lang) { this._langPicked = true; localStorage.setItem("zamex-lang", u.lang); }
+    } catch (e) {}
+    return super.setState(update, cb);
+  }
+}
+
+class Page extends DCLogic {
+  _fitText() {
+    // Keep every paragraph to at most 3 lines: shrink the text a little (never below 12px) until it fits.
+    cancelAnimationFrame(this._fitRaf);
+    this._fitRaf = requestAnimationFrame(() => {
+      document.querySelectorAll("p").forEach((el) => {
+        if (!el.offsetParent || !el.textContent.trim()) return;
+        if (!el.dataset.fs0) { el.dataset.fs0 = getComputedStyle(el).fontSize; el.dataset.mw0 = el.style.maxWidth || ""; }
+        el.style.fontSize = el.dataset.fs0;
+        el.style.maxWidth = el.dataset.mw0;
+        let fs = parseFloat(el.dataset.fs0);
+        const lines = () => { const lh = parseFloat(getComputedStyle(el).lineHeight) || fs * 1.5; return Math.round(el.offsetHeight / lh); };
+        if (lines() > 3 && el.dataset.mw0) { el.style.maxWidth = "none"; }
+        while (lines() > 3 && fs > 12) { fs -= 0.5; el.style.fontSize = fs + "px"; }
+      });
+    });
+  }
+  componentDidUpdate() { if (this._fitText) this._fitText(); }
+  componentDidMount() {
+    this._fitText();
+    this._onFitResize = () => this._fitText();
+    window.addEventListener("resize", this._onFitResize, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this._fitText());
+    const doc = document;
+    const root = doc.documentElement;
+    // Browsers only autoplay video that is muted *as an attribute* and inline on iPhone; enforce both, then start playback.
+    this._kick = () => {
+      doc.querySelectorAll("video").forEach((v) => {
+        v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
+        v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", ""); v.setAttribute("autoplay", "");
+        if (v.paused) { const pr = v.play(); if (pr && pr.catch) pr.catch(() => {}); }
+      });
+    };
+    this._kick();
+    this._kickT1 = setTimeout(this._kick, 300);
+    this._kickT2 = setTimeout(this._kick, 1500);
+    this._kickScroll = () => { if (this._kickRaf) return; this._kickRaf = requestAnimationFrame(() => { this._kickRaf = 0; this._kick(); }); };
+    doc.addEventListener("scroll", this._kickScroll, { passive: true, capture: true });
+    doc.addEventListener("touchstart", this._kick, { passive: true });
+    doc.addEventListener("click", this._kick);
+    doc.addEventListener("visibilitychange", this._kick);
+    // Sticky navbar: hidden over the hero (it has its own nav), always visible once you scroll past it.
+    const snav = doc.querySelector(".zx-snav");
+    const secIds = ["otc", "how", "security"];
+    let lastY = 0;
+    this._navScroll = () => {
+      if (this._navRaf) return;
+      this._navRaf = requestAnimationFrame(() => {
+        this._navRaf = 0;
+        const hero = doc.getElementById("top");
+        if (!hero || !snav) return;
+        const vh = window.innerHeight || 800;
+        const hr = hero.getBoundingClientRect();
+        const y = -hr.top;
+        const dy = y - lastY;
+        lastY = y;
+        const pastHero = hr.bottom < 90;
+        const pinned = this.state && (this.state.open2 || this.state.nav);
+        snav.classList.toggle("zx-snav--show", pastHero || !!pinned && hr.bottom < vh * 0.5);
+        const wrap = hero.parentElement;
+        if (wrap) {
+          const wr = wrap.getBoundingClientRect();
+          root.style.setProperty("--sp", Math.max(0, Math.min(1, -wr.top / Math.max(1, wr.height - vh))).toFixed(4));
+        }
+        let active = "";
+        secIds.forEach((id) => { const el = doc.getElementById(id); if (el && el.getBoundingClientRect().top <= vh * 0.4) active = id; });
+        snav.querySelectorAll(".zx-snl").forEach((a) => a.classList.toggle("zx-active", a.getAttribute("data-sec") === active));
+      });
+    };
+    doc.addEventListener("scroll", this._navScroll, { passive: true, capture: true });
+    window.addEventListener("resize", this._navScroll, { passive: true });
+    this._navScroll();
+    if (!window.matchMedia || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    root.classList.add("zx-js");
+    const SEL = ".zx-reveal, .zm-card, .zx-line, .zm-masthead";
+    const reveal = (el) => el.classList.add("zx-in");
+    if ("IntersectionObserver" in window) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { reveal(e.target); this._io.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    }
+    this._scan = () => {
+      doc.querySelectorAll(SEL).forEach((el) => {
+        if (el.dataset.zxObs) return;
+        el.dataset.zxObs = "1";
+        if (this._io) this._io.observe(el); else reveal(el);
+      });
+    };
+    this._scan();
+    this._rescan = setTimeout(this._scan, 600);
+    this._failsafe = setTimeout(() => doc.querySelectorAll(SEL).forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight) reveal(el);
+    }), 2500);
+    this._onScroll = () => {
+      if (this._raf) return;
+      this._raf = requestAnimationFrame(() => {
+        this._raf = 0;
+        const vh = window.innerHeight || 800;
+        const hero = doc.getElementById("top");
+        if (hero) {
+          const hr = hero.getBoundingClientRect();
+          const hp = Math.max(0, Math.min(1, -hr.top / Math.max(1, hr.height)));
+          root.style.setProperty("--hp", hp.toFixed(3));
+        }
+        doc.querySelectorAll(".zx-media").forEach((m) => {
+          const r = m.getBoundingClientRect();
+          if (r.bottom < -100 || r.top > vh + 100) return;
+          m.style.setProperty("--p", ((r.top + r.height / 2 - vh / 2) / vh).toFixed(3));
+        });
+      });
+    };
+    doc.addEventListener("scroll", this._onScroll, { passive: true, capture: true });
+    window.addEventListener("resize", this._onScroll, { passive: true });
+    this._onScroll();
+  }
+  componentWillUnmount() {
+    clearTimeout(this._navIdle);
+    document.removeEventListener("scroll", this._navScroll, { capture: true });
+    window.removeEventListener("resize", this._navScroll);
+    clearTimeout(this._kickT1); clearTimeout(this._kickT2);
+    document.removeEventListener("scroll", this._kickScroll, { capture: true });
+    document.removeEventListener("touchstart", this._kick);
+    document.removeEventListener("click", this._kick);
+    document.removeEventListener("visibilitychange", this._kick);
+    if (this._io) this._io.disconnect();
+    clearTimeout(this._rescan);
+    clearTimeout(this._failsafe);
+    if (this._onScroll) {
+      document.removeEventListener("scroll", this._onScroll, { capture: true });
+      window.removeEventListener("resize", this._onScroll);
+    }
+  }
+  renderVals() {
+    const LANGS = [
+      { id: "en", name: "English", code: "EN" },
+      { id: "ru", name: "Русский", code: "RU" },
+      { id: "tg", name: "Тоҷикӣ", code: "TJ" }
+    ];
+    const wanted = (this.state && this.state.lang) || this.props.startLang || "en";
+    const lang = LANGS.some((l) => l.id === wanted) ? wanted : "en";
+    const open = !!(this.state && this.state.open);
+    const navOpen = !!(this.state && this.state.nav);
+    const open2 = !!(this.state && this.state.open2);
+    const isDark = (this.state || {}).theme === "dark";
+    const THEME_LABELS = { en: ["Switch to dark mode", "Switch to light mode"], ru: ["Тёмная тема", "Светлая тема"], tg: ["Ҳолати торик", "Ҳолати равшан"] };
+    const T = {
+      en: {
+        navOtc: "About", navBusiness: "For business", navHow: "Process", navSecurity: "Security", navAbout: "About",
+        contact: "Contact", open: "Request Quote",
+        heroPlace: "Dushanbe, Republic of Tajikistan",
+        heroTitle: "Financial Infrastructure For Global Business",
+        heroSub: "OTC, settlement and digital assets across Central Asia.",
+        ctaClient: "Become a client", ctaQuote: "Request an OTC quote",
+        ticketTitle: "OTC request", ticketTag: "Example",
+        ticketNote: "Illustrative example. Every quote is prepared for the specific transaction and confirmed with you before execution.",
+        otcTitle: "Built for large corporate transactions",
+        otcSub: "For importers, exporters, financial companies and trading businesses.",
+        bandTitle: "Large transactions. Precise terms.",
+        bandSub: "Custom quotes, liquidity access and dedicated support for corporate digital asset transactions.",
+        bandCta: "Request a custom quote",
+        howTitle: "A Clear Process",
+        bizTitle: "Financial infrastructure for teams and businesses",
+        bizSub: "Tools for corporate settlement, transaction control and operational workflows.",
+        secTitle: "Security",
+        secSub: "Zamex designs its processes so that control, transparency and protection are part of everyday operations.",
+        aboutTitle: "Infrastructure connecting business and digital assets",
+        aboutSub: "Zamex is developing professional infrastructure for corporate OTC transactions, settlement and digital asset operations across Central Asia.",
+        ctaTitle: "Ready to discuss your next transaction?",
+        ctaSub: "Submit a request and the Zamex team will contact you to review the transaction details.",
+        ctaManager: "Speak with a manager",
+        footTag: "Global financial infrastructure for digital assets, settlement and capital.",
+        footPlatform: "Platform", footDocs: "Documents", footContact: "Contact",
+        docTerms: "Terms of use", docAml: "AML/KYC policy", docRisk: "Risk disclosure", docPrivacy: "Privacy policy",
+        footAddress: "Dushanbe, Republic of Tajikistan",
+        footLegal: "© 2026 Zamex. Digital asset transactions are volatile and carry a risk of loss.",
+        rows: [["Pair", "USDT → USD"], ["Amount", "[Amount]"], ["Settlement corridor", "[Corridor]"], ["Manager", "Assigned"]],
+        stages: ["Request", "Compliance", "Quote", "Settlement"],
+        otcCards: [
+          { big: "RFQ", title: "Deep liquidity", text: "Competitive quotes for large transactions across key currency corridors." },
+          { big: "1:1", title: "Dedicated manager", text: "One point of contact from the initial request through transaction completion." },
+          { big: "24/7", title: "Fast execution", text: "Requests are accepted around the clock and handled without unnecessary steps." }
+        ],
+        trust: [["24/7", "Requests and support"], ["KYC / AML", "Transaction controls"], ["6+", "Settlement corridors"], ["[License no.]", "Regulatory status"]],
+        steps: [
+          ["Submit a corporate request", "Share the asset, amount and settlement details for your transaction."],
+          ["KYC / KYB and compliance review", "We verify your company and review the transaction against our controls."],
+          ["Receive a custom OTC quote", "Your manager sends the terms for you to review and confirm."]
+        ],
+        biz: [
+          ["Corporate settlement", "Manage operational flows and currency corridors."],
+          ["International transfers", "Prepare payments and track their status."],
+          ["Bulk payouts", "Work with payment files and review transactions before submission."],
+          ["Control and compliance", "Unified review rules for every transaction."]
+        ],
+        sec: ["2FA and access protection", "AML monitoring", "Activity logs", "Session management", "Activity controls", "Risk-based controls"],
+        about: [
+          ["Mission", "Bring traditional financial tools and digital assets together within a secure and transparent infrastructure."],
+          ["Principles", "Control, clear processes, dedicated support and respect for the requirements of each jurisdiction."],
+          ["Geography", "Republic of Tajikistan and international business corridors."]
+        ]
+      },
+      ru: {
+        navOtc: "О нас", navBusiness: "Для бизнеса", navHow: "Процесс", navSecurity: "Безопасность", navAbout: "О компании",
+        contact: "Контакты", open: "Запросить котировку",
+        heroPlace: "Душанбе, Республика Таджикистан",
+        heroTitle: "Финансовая Инфраструктура\nДля Глобального Бизнеса",
+        heroSub: "OTC, расчёты и цифровые активы в Центральной Азии.",
+        ctaClient: "Стать клиентом", ctaQuote: "Запросить OTC-котировку",
+        ticketTitle: "OTC-заявка", ticketTag: "Пример",
+        ticketNote: "Иллюстративный пример. Каждая котировка готовится под конкретную сделку и согласуется с вами до исполнения.",
+        otcTitle: "Для крупных корпоративных сделок",
+        otcSub: "Для импортёров, экспортёров, финансовых компаний и торгового бизнеса.",
+        bandTitle: "Крупные сделки. Точные условия.",
+        bandSub: "Индивидуальные котировки, доступ к ликвидности и персональное сопровождение корпоративных сделок с цифровыми активами.",
+        bandCta: "Запросить котировку",
+        howTitle: "Понятный процесс",
+        bizTitle: "Финансовая инфраструктура для команд и бизнеса",
+        bizSub: "Инструменты для корпоративных расчётов, контроля операций и рабочих процессов.",
+        secTitle: "Безопасность",
+        secSub: "Zamex выстраивает процессы так, чтобы контроль, прозрачность и защита были частью ежедневной работы.",
+        aboutTitle: "Инфраструктура, соединяющая бизнес и цифровые активы",
+        aboutSub: "Zamex развивает профессиональную инфраструктуру для корпоративных OTC-сделок, расчётов и операций с цифровыми активами в Центральной Азии.",
+        ctaTitle: "Готовы обсудить следующую сделку?",
+        ctaSub: "Оставьте заявку, и команда Zamex свяжется с вами, чтобы обсудить детали сделки.",
+        ctaManager: "Связаться с менеджером",
+        footTag: "Глобальная финансовая инфраструктура для цифровых активов, расчётов и капитала.",
+        footPlatform: "Платформа", footDocs: "Документы", footContact: "Контакты",
+        docTerms: "Условия использования", docAml: "Политика AML/KYC", docRisk: "Раскрытие рисков", docPrivacy: "Политика конфиденциальности",
+        footAddress: "Душанбе, Республика Таджикистан",
+        footLegal: "© 2026 Zamex. Операции с цифровыми активами волатильны и связаны с риском потерь.",
+        rows: [["Пара", "USDT → USD"], ["Сумма", "[Сумма]"], ["Коридор расчётов", "[Коридор]"], ["Менеджер", "Назначен"]],
+        stages: ["Заявка", "Проверка", "Котировка", "Расчёт"],
+        otcCards: [
+          { big: "RFQ", title: "Глубокая ликвидность", text: "Конкурентные котировки для крупных сделок по ключевым валютным коридорам." },
+          { big: "1:1", title: "Персональный менеджер", text: "Одно контактное лицо от первой заявки до завершения сделки." },
+          { big: "24/7", title: "Быстрое исполнение", text: "Заявки принимаются круглосуточно и обрабатываются без лишних шагов." }
+        ],
+        trust: [["24/7", "Заявки и поддержка"], ["KYC / AML", "Контроль операций"], ["6+", "Коридоров расчётов"], ["[№ лицензии]", "Регуляторный статус"]],
+        steps: [
+          ["Отправьте корпоративную заявку", "Укажите актив, сумму и детали расчёта по сделке."],
+          ["Проверка KYC / KYB и комплаенс", "Мы проверяем вашу компанию и сделку по нашим правилам контроля."],
+          ["Получите индивидуальную котировку", "Менеджер направит условия для проверки и подтверждения."]
+        ],
+        biz: [
+          ["Корпоративные расчёты", "Управляйте операционными потоками и валютными коридорами."],
+          ["Международные переводы", "Готовьте платежи и отслеживайте их статус."],
+          ["Массовые выплаты", "Работайте с платёжными файлами и проверяйте операции до отправки."],
+          ["Контроль и комплаенс", "Единые правила проверки для каждой операции."]
+        ],
+        sec: ["2FA и защита доступа", "AML-мониторинг", "Журналы действий", "Управление сессиями", "Контроль операций", "Риск-ориентированный контроль"],
+        about: [
+          ["Миссия", "Объединить традиционные финансовые инструменты и цифровые активы в безопасной и прозрачной инфраструктуре."],
+          ["Принципы", "Контроль, понятные процессы, персональное сопровождение и уважение к требованиям каждой юрисдикции."],
+          ["География", "Республика Таджикистан и международные бизнес-коридоры."]
+        ]
+      },
+      tg: {
+        navOtc: "Дар бораи мо", navBusiness: "Барои бизнес", navHow: "Раванд", navSecurity: "Амният", navAbout: "Дар бораи мо",
+        contact: "Тамос", open: "Дархости нархнома",
+        heroPlace: "Душанбе, Ҷумҳурии Тоҷикистон",
+        heroTitle: "Инфрасохтори Молиявӣ\nБарои Тиҷорати Ҷаҳонӣ",
+        heroSub: "OTC, ҳисоббаробаркунӣ ва дороиҳои рақамӣ дар Осиёи Марказӣ.",
+        ctaClient: "Мизоҷ шавед", ctaQuote: "Дархости нархномаи OTC",
+        ticketTitle: "Дархости OTC", ticketTag: "Намуна",
+        ticketNote: "Намунаи тасвирӣ. Ҳар як нархнома барои аҳди мушаххас омода шуда, пеш аз иҷро бо шумо мувофиқа карда мешавад.",
+        otcTitle: "Барои аҳдҳои калони корпоративӣ",
+        otcSub: "Барои воридкунандагон, содиркунандагон, ширкатҳои молиявӣ ва тиҷорати савдо.",
+        bandTitle: "Аҳдҳои калон. Шартҳои дақиқ.",
+        bandSub: "Нархномаҳои инфиродӣ, дастрасӣ ба пардохтпазирӣ ва ҳамроҳии шахсии аҳдҳои корпоративӣ бо дороиҳои рақамӣ.",
+        bandCta: "Дархости нархнома",
+        howTitle: "Раванди равшан",
+        bizTitle: "Инфрасохтори молиявӣ барои дастаҳо ва тиҷорат",
+        bizSub: "Абзорҳо барои ҳисоббаробаркуниҳои корпоративӣ, назорати амалиёт ва равандҳои корӣ.",
+        secTitle: "Амният",
+        secSub: "Zamex равандҳоро тавре месозад, ки назорат, шаффофият ва ҳифз қисми кори ҳаррӯза бошанд.",
+        aboutTitle: "Инфрасохторе, ки тиҷорат ва дороиҳои рақамиро мепайвандад",
+        aboutSub: "Zamex инфрасохтори касбиро барои аҳдҳои корпоративии OTC, ҳисоббаробаркунӣ ва амалиёт бо дороиҳои рақамӣ дар Осиёи Марказӣ рушд медиҳад.",
+        ctaTitle: "Барои муҳокимаи аҳди навбатӣ омодаед?",
+        ctaSub: "Дархост фиристед ва дастаи Zamex барои баррасии ҷузъиёти аҳд бо шумо тамос мегирад.",
+        ctaManager: "Бо менеҷер тамос гиред",
+        footTag: "Инфрасохтори ҷаҳонии молиявӣ барои дороиҳои рақамӣ, ҳисоббаробаркунӣ ва сармоя.",
+        footPlatform: "Платформа", footDocs: "Ҳуҷҷатҳо", footContact: "Тамос",
+        docTerms: "Шартҳои истифода", docAml: "Сиёсати AML/KYC", docRisk: "Ифшои хатарҳо", docPrivacy: "Сиёсати махфият",
+        footAddress: "Душанбе, Ҷумҳурии Тоҷикистон",
+        footLegal: "© 2026 Zamex. Амалиёт бо дороиҳои рақамӣ ноустувор буда, хатари зиён дорад.",
+        rows: [["Ҷуфт", "USDT → USD"], ["Маблағ", "[Маблағ]"], ["Долони ҳисоббаробаркунӣ", "[Долон]"], ["Менеҷер", "Таъин шуд"]],
+        stages: ["Дархост", "Санҷиш", "Нархнома", "Ҳисоб"],
+        otcCards: [
+          { big: "RFQ", title: "Пардохтпазирии баланд", text: "Нархномаҳои рақобатпазир барои аҳдҳои калон дар долонҳои асосии асъорӣ." },
+          { big: "1:1", title: "Менеҷери шахсӣ", text: "Як шахси тамос аз дархости аввал то анҷоми аҳд." },
+          { big: "24/7", title: "Иҷрои зуд", text: "Дархостҳо шабонарӯзӣ қабул ва бе қадамҳои иловагӣ коркард мешаванд." }
+        ],
+        trust: [["24/7", "Дархостҳо ва дастгирӣ"], ["KYC / AML", "Назорати амалиёт"], ["6+", "Долонҳои ҳисоббаробаркунӣ"], ["[№ иҷозатнома]", "Мақоми танзимӣ"]],
+        steps: [
+          ["Дархости корпоративӣ фиристед", "Дороӣ, маблағ ва ҷузъиёти ҳисоббаробаркуниро нишон диҳед."],
+          ["Санҷиши KYC / KYB ва мутобиқат", "Мо ширкати шумо ва аҳдро мувофиқи қоидаҳои назорат месанҷем."],
+          ["Нархномаи инфиродӣ гиред", "Менеҷер шартҳоро барои баррасӣ ва тасдиқ мефиристад."]
+        ],
+        biz: [
+          ["Ҳисоббаробаркуниҳои корпоративӣ", "Ҷараёнҳои амалиётӣ ва долонҳои асъориро идора кунед."],
+          ["Интиқолҳои байналмилалӣ", "Пардохтҳоро омода кунед ва ҳолати онҳоро пайгирӣ намоед."],
+          ["Пардохтҳои оммавӣ", "Бо файлҳои пардохтӣ кор кунед ва амалиётро пеш аз ирсол санҷед."],
+          ["Назорат ва мутобиқат", "Қоидаҳои ягонаи санҷиш барои ҳар як амалиёт."]
+        ],
+        sec: ["2FA ва ҳифзи дастрасӣ", "Мониторинги AML", "Сабти амалҳо", "Идоракунии сессияҳо", "Назорати амалиёт", "Назорат дар асоси хатар"],
+        about: [
+          ["Рисолат", "Муттаҳид кардани абзорҳои анъанавии молиявӣ ва дороиҳои рақамӣ дар инфрасохтори бехатар ва шаффоф."],
+          ["Принсипҳо", "Назорат, равандҳои равшан, ҳамроҳии шахсӣ ва эҳтиром ба талаботи ҳар як қаламрави қонунгузорӣ."],
+          ["Ҷуғрофия", "Ҷумҳурии Тоҷикистон ва долонҳои байналмилалии тиҷоратӣ."]
+        ]
+      }
+    };
+    const X = {
+      en: {
+        badge: "Corporate OTC desk", menu: "Menu", close: "Close menu", mhLabel: "Zamex in numbers", mhLine1: "Built for", mhLine2: "at corporate scale", learnMore: "Learn More", m1t: "Request handling\nAround the clock", m1c: "Requests and\nsupport", m2t: "Dedicated manager\nOne point of contact", m2c: "From request to\ncompleted transaction", m3t: "Settlement corridors\nCross-border reach", m3c: "Currency corridors\nfor settlement", meetTitle: "Meet Zamex.", assetsLead: "Settlement in leading digital assets and currencies.", ucEyebrow: "Zamex in practice", ucTitle: "Use cases", knowMore: "Discuss your case", chip1: "Quote ready", chip2: "KYB verified",
+        mgr: ["Request received", "Compliance review complete", "Your quote is ready"],
+        flowA: "Your company", flowB: "Zamex", flowC: "Counterparties",
+        photos: ["[Photo: your team]", "[Photo: Dushanbe office]", "[Photo: client meeting]"],
+        assets: [["₮", "USDT", "Tether"], ["₿", "BTC", "Bitcoin"], ["S", "SOL", "Solana"], ["B", "BNB", "BNB"], ["$", "USD", "US dollar"]]
+      },
+      ru: {
+        badge: "Корпоративный OTC-деск", menu: "Меню", close: "Закрыть меню", mhLabel: "Zamex в цифрах", mhLine1: "Создано для", mhLine2: "корпоративного масштаба", learnMore: "Подробнее", m1t: "Обработка заявок\nКруглосуточно", m1c: "Заявки и\nподдержка", m2t: "Персональный менеджер\nОдно контактное лицо", m2c: "От заявки до\nзавершения сделки", m3t: "Коридоры расчётов\nМеждународный охват", m3c: "Валютные коридоры\nдля расчётов", meetTitle: "Знакомьтесь, Zamex.", assetsLead: "Расчёты в ведущих цифровых активах и валютах.", ucEyebrow: "Zamex на практике", ucTitle: "Сценарии", knowMore: "Обсудить вашу задачу", chip1: "Котировка готова", chip2: "KYB пройден",
+        mgr: ["Заявка получена", "Проверка завершена", "Котировка готова"],
+        flowA: "Ваша компания", flowB: "Zamex", flowC: "Контрагенты",
+        photos: ["[Фото: ваша команда]", "[Фото: офис в Душанбе]", "[Фото: встреча с клиентом]"],
+        assets: [["₮", "USDT", "Tether"], ["₿", "BTC", "Bitcoin"], ["S", "SOL", "Solana"], ["B", "BNB", "BNB"], ["$", "USD", "Доллар США"]],
+        langLabel: "Язык"
+      },
+      tg: {
+        badge: "OTC-дески корпоративӣ", menu: "Меню", close: "Пӯшидани меню", mhLabel: "Zamex дар рақамҳо", mhLine1: "Сохта барои", mhLine2: "миқёси корпоративӣ", learnMore: "Муфассал", m1t: "Коркарди дархостҳо\nШабонарӯзӣ", m1c: "Дархостҳо ва\nдастгирӣ", m2t: "Менеҷери шахсӣ\nЯк шахси тамос", m2c: "Аз дархост то\nанҷоми аҳд", m3t: "Долонҳои ҳисоббаробаркунӣ\nФарогирии байналмилалӣ", m3c: "Долонҳои асъорӣ\nбарои ҳисоббаробаркунӣ", meetTitle: "Шинос шавед: Zamex.", assetsLead: "Ҳисоббаробаркунӣ бо дороиҳо ва асъорҳои пешбаранда.", ucEyebrow: "Zamex дар амал", ucTitle: "Истифода", knowMore: "Масъалаи худро муҳокима кунед", chip1: "Нархнома омода аст", chip2: "KYB тасдиқ шуд",
+        mgr: ["Дархост қабул шуд", "Санҷиш анҷом ёфт", "Нархнома омода аст"],
+        flowA: "Ширкати шумо", flowB: "Zamex", flowC: "Контрагентҳо",
+        photos: ["[Акс: дастаи шумо]", "[Акс: офис дар Душанбе]", "[Акс: вохӯрӣ бо мизоҷ]"],
+        assets: [["₮", "USDT", "Tether"], ["₿", "BTC", "Bitcoin"], ["S", "SOL", "Solana"], ["B", "BNB", "BNB"], ["$", "USD", "Доллари ИМА"]],
+        langLabel: "Забон"
+      }
+    };
+    X.en.langLabel = "Language";
+    const t = Object.assign({}, T[lang] || T.en, X[lang] || X.en);
+    const markBg = ["#1D3B66", "#E2541A", "#3A4B60"];
+    const LOGOS = { USDT: "assets/usdt.svg", BTC: "assets/btc.svg", SOL: "assets/sol.svg", BNB: "assets/bnb.svg", USD: "assets/usd.svg" };
+    const LOGOS_BW = { USDT: "assets/usdt-bw.svg", BTC: "assets/btc-bw.svg", SOL: "assets/sol-bw.svg", BNB: "assets/bnb-bw.svg", USD: "assets/usd-bw.svg" };
+    const oneLoop = t.assets.map((a, i) => ({ mark: a[0], sym: a[1], name: a[2], bg: markBg[i % 3], logo: LOGOS[a[1]] }));
+    const ucIdx = (this.state && typeof this.state.uc === "number") ? this.state.uc : 0;
+    const assetStyles = [
+      "font-family: 'Cedarville Cursive', cursive; font-weight: 700",
+      "font-family: system-ui, -apple-system, sans-serif; font-weight: 800; letter-spacing: -0.02em",
+      "font-family: Georgia, serif; font-weight: 500",
+      "font-family: Onest, sans-serif; font-weight: 600; letter-spacing: -0.02em",
+      "font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; letter-spacing: -0.02em"
+    ];
+    const assetLoop = t.assets.map((a, i) => ({ label: a[2] === a[1] ? a[1] : a[2] + " " + a[1], style: assetStyles[i % assetStyles.length], logo: LOGOS_BW[a[1]] }));
+    const GL = {
+      "0": ["01110","10001","10011","10101","11001","10001","01110"],
+      "1": ["010","110","010","010","010","010","111"],
+      "2": ["01110","10001","00001","00010","00100","01000","11111"],
+      "4": ["00010","00110","01010","10010","11111","00010","00010"],
+      "6": ["01110","10000","10000","11110","10001","10001","01110"],
+      "7": ["11111","00001","00010","00100","01000","01000","01000"],
+      "/": ["00001","00010","00010","00100","01000","01000","10000"],
+      "+": ["00000","00100","00100","11111","00100","00100","00000"],
+      ":": ["0","0","1","0","0","1","0"],
+      "O": ["01110","10001","10001","10001","10001","10001","01110"],
+      "T": ["11111","00100","00100","00100","00100","00100","00100"],
+      "C": ["01110","10001","10000","10000","10000","10001","01110"]
+    };
+    const dotsFor = (str, pitchX) => {
+      let x = 0; const circles = [];
+      str.split("").forEach((ch, ci) => {
+        const g = GL[ch]; if (!g) return;
+        if (ci > 0) x += pitchX;
+        const w = g[0].length;
+        g.forEach((row, ry) => row.split("").forEach((bit, cx) => { if (bit === "1") circles.push({ x: x + cx * pitchX + 1.55, y: ry * 4 + 1.55 }); }));
+        x += w * pitchX;
+      });
+      return { vb: "0 0 " + x + " 28", circles: circles, vbW: x };
+    };
+    const head = dotsFor("OTC", 4);
+    const headDots = { vb: head.vb, circles: head.circles, w: (head.vbW / 196 * 4.851).toFixed(3) + "em" };
+    const metricDef = [
+      { cls: "zm-c1", value: "24/7", title: t.m1t, caption: t.m1c, top: "48.6%", r: 1.55, href: "#how" },
+      { cls: "zm-c2", value: "1:1", title: t.m2t, caption: t.m2c, top: "48%", r: 2.0, href: "#otc" },
+      { cls: "zm-c3", value: "6+", title: t.m3t, caption: t.m3c, top: "48.5%", r: 1.55, href: "#business" }
+    ];
+    const metricCards = metricDef.map((m, i) => {
+      const d = dotsFor(m.value, 5);
+      const scale = i === 1 ? 1.35 : 1;
+      return Object.assign({}, m, { c1: i === 0, c2: i === 1, c3: i === 2, dots: { vb: d.vb, circles: d.circles, w: Math.min(62, d.vbW / 75 * 31.2 * scale).toFixed(2) + "%" } });
+    });
+    const ticks = [];
+    for (let i = 0; i <= 22; i++) {
+      const ang = (190 + i * 5) * Math.PI / 180;
+      const inner = i % 5 === 0 ? 129 : 133;
+      ticks.push({ x1: (163 + Math.cos(ang) * inner).toFixed(2), y1: (163 + Math.sin(ang) * inner).toFixed(2), x2: (163 + Math.cos(ang) * 142).toFixed(2), y2: (163 + Math.sin(ang) * 142).toFixed(2), w: i % 5 === 0 ? 1.5 : 1 });
+    }
+    const photoBg = ["linear-gradient(160deg, #E9EEF4, #C9D4E2)", "linear-gradient(160deg, #FFD9C4, #FF8A57)", "linear-gradient(160deg, #1C3557, #0B2239)"];
+    const photoStroke = ["rgba(10,22,38,0.18)", "rgba(255,255,255,0.45)", "rgba(255,255,255,0.22)"];
+    const ink = "#EEF2F7";
+    const doneCount = 3;
+    return {
+      t: t,
+      toggleMenu: () => this.setState({ open: !open }),
+      heroFs: lang === "en" ? "clamp(28px, 2.7vw, 42px)" : "clamp(24px, 2.25vw, 36px)",
+      themeCls: isDark ? "zx-dark zx-theme-t" : "zx-theme-t", isDark: isDark, isLight: !isDark,
+      themeLabel: (THEME_LABELS[lang] || THEME_LABELS.en)[isDark ? 1 : 0],
+      toggleTheme: () => this.setState({ theme: isDark ? "light" : "dark" }),
+      toggleMenu2: () => this.setState({ open2: !open2 }),
+      menuOpen2: open2,
+      menuExpanded2: open2 ? "true" : "false",
+      chevRot2: open2 ? "rotate(180deg)" : "none",
+      langsLight: LANGS.map((l) => ({ name: l.name, code: l.code, sel: l.id === lang ? "true" : "false", bg: l.id === lang ? "rgba(var(--zx-ink-rgb),0.06)" : "transparent", codeColor: l.id === lang ? "#C2410C" : "rgba(var(--zx-ink-rgb),0.5)", pick: () => this.setState({ lang: l.id, open: false, open2: false }) })),
+      openNav: () => this.setState({ nav: true, open: false }),
+      closeNav: () => this.setState({ nav: false }),
+      navExpanded: navOpen ? "true" : "false",
+      navVis: navOpen ? "visible" : "hidden",
+      navPe: navOpen ? "auto" : "none",
+      navVisDelay: navOpen ? "0s" : ".5s",
+      navBackOp: navOpen ? "1" : "0",
+      navPanelX: navOpen ? "translateX(0)" : "translateX(100%)",
+      navCtaOp: navOpen ? "1" : "0",
+      navCtaDelay: navOpen ? ".4s" : "0s",
+      mobLinks: [["#otc", t.navOtc], ["#how", t.navHow], ["#security", t.navSecurity]].map((l, i) => ({ href: l[0], label: l[1], op: navOpen ? "1" : "0", ty: navOpen ? "translateY(0)" : "translateY(16px)", delay: navOpen ? (140 + i * 60) + "ms" : "0ms", go: () => this.setState({ nav: false }) })),
+      mobLangs: LANGS.map((l) => ({ code: l.code, sel: l.id === lang ? "true" : "false", bg: l.id === lang ? "#FFFFFF" : "transparent", fg: l.id === lang ? "#06101C" : "#FFFFFF", pick: () => this.setState({ lang: l.id }) })),
+      menuOpen: open,
+      menuExpanded: open ? "true" : "false",
+      chevRot: open ? "rotate(180deg)" : "none",
+      curCode: (LANGS.find((l) => l.id === lang) || LANGS[0]).code,
+      langs: LANGS.map((l) => ({
+        name: l.name,
+        code: l.code,
+        sel: l.id === lang ? "true" : "false",
+        bg: l.id === lang ? "rgba(255,255,255,0.08)" : "transparent",
+        codeColor: l.id === lang ? "#FF8A57" : "#9AA8B8",
+        pick: () => this.setState({ lang: l.id, open: false })
+      })),
+      ticketRows: t.rows.map((r) => ({ label: r[0], value: r[1] })),
+      stages: t.stages.map((s, i) => ({ label: s, w: i < doneCount ? "100%" : "0%", delay: (0.8 + i * 0.4) + "s", fg: i < doneCount ? ink : "#8796A8" })),
+      otcCards: t.otcCards.map((c, i) => Object.assign({}, c, { liq: i === 0, mgr: i === 1, exec: i === 2 })),
+      mgrItems: t.mgr.map((m, i) => ({ text: m, op: i === 2 ? "1" : "0.75", dot: i === 2 ? "#E2541A" : "#2A3B50" })),
+      marquee: oneLoop.concat(oneLoop, oneLoop, oneLoop),
+      heroStat: { big: t.trust[0][0], label: t.trust[0][1] },
+      headDots: headDots,
+      metricCards: metricCards,
+      ticks: ticks,
+      infoCards: t.otcCards.map((c, i) => Object.assign({}, c, { wide: i === 0, dark: i > 0, hasImg: i > 0, img: i === 1 ? "assets/manager.jpg" : "assets/zamex-artwork.jpg", imgPos: i === 1 ? "center 22%" : "center 42%" })),
+      assetRow: assetLoop.concat(assetLoop, assetLoop, assetLoop),
+      ucTabs: t.biz.map((b, i) => ({ label: b[0], sel: i === ucIdx ? "true" : "false", fg: i === ucIdx ? "var(--zx-ink)" : "rgba(var(--zx-ink-rgb),0.5)", dot: i === ucIdx ? "#FF6A2B" : "transparent", pick: () => this.setState({ uc: i }) })),
+      uc: { title: t.biz[ucIdx][0], text: t.biz[ucIdx][1] },
+      heroWords: t.heroTitle.split(" ").map((w, i) => ({ w: w, d: (0.15 + i * 0.09) + "s" })),
+      orbitTokens: oneLoop.map((a, i) => ({ mark: a.mark, sym: a.sym, bg: a.bg, logo: a.logo, d: (-i * 3.6) + "s", z: i % 2 === 0 ? "4" : "1" })),
+      photos: [
+        { isVideo: true, isImg: false, src: "assets/toggles.mp4", pos: "center" },
+        { isVideo: false, isImg: true, src: "assets/gold-bars.jpg", pos: "30% 70%" },
+        { isVideo: true, isImg: false, src: "assets/dial.mp4", pos: "center" }
+      ].map((ph, i) => Object.assign({}, ph, { title: t.about[i][0], text: t.about[i][1] })),
+      trust: t.trust.map((x) => ({ big: x[0], label: x[1] })),
+      steps: t.steps.map((x, i) => Object.assign({ num: "0" + (i + 1), title: x[0], text: x[1] }, [
+        { isVideo: true, isImg: false, src: "assets/toggles.mp4", pos: "center" },
+        { isVideo: false, isImg: true, src: "assets/gold-bars.jpg", pos: "30% 70%" },
+        { isVideo: true, isImg: false, src: "assets/dial.mp4", pos: "center" }
+      ][i])),
+      bizCards: t.biz.map((x) => ({ title: x[0], text: x[1] })),
+      secItems: t.sec,
+      aboutItems: t.about.map((x) => ({ title: x[0], text: x[1] }))
+    };
+  }
+}
+Page.prototype.render = function () {
+  const v = this.renderVals();
+  return html`
+
+<div class="${v.themeCls}" style="font-family: Onest, 'Segoe UI', system-ui, sans-serif; color: var(--zx-ink); background: var(--zx-bg); min-height: 100vh; overflow: hidden">
+
+
+<div class="zx-intro" aria-hidden="true">
+<div class="zx-intro-logo"><svg viewBox="0 0 1266 228" style="display: block; width: 100%; height: auto" fill="currentColor"><path fill-rule="evenodd" d="M321.3 226.6C277.0 218.2 241.4 184.8 230.6 141.5C228.1 131.6 227.0 115.6 228.0 104.6C231.9 64.2 256.2 29.6 293.1 12.1C336.3 -8.5 388.9 1.2 422.2 35.8C441.5 55.9 451.7 78.5 454.0 106.5C454.5 113.1 455.0 142.7 455.0 172.2L455.0 226.0L439.0 226.0L423.0 226.0L423.0 209.9L423.0 193.7L418.6 197.8C405.8 209.6 386.4 220.2 369.5 224.6C361.2 226.8 356.8 227.3 344.0 227.6C333.8 227.8 326.1 227.5 321.3 226.6ZM883.5 226.0C855.9 220.0 832.8 205.6 816.0 183.9C781.0 138.6 785.1 75.0 825.5 34.5C852.8 7.3 892.2 -4.3 930.0 4.0C964.2 11.4 993.9 35.0 1008.6 66.5L1011.9 73.5L951.2 134.2C917.9 167.6 890.8 195.2 891.2 195.5C891.5 195.8 896.2 196.3 901.6 196.6C918.4 197.5 936.1 192.9 950.1 183.9C958.0 178.8 971.4 165.2 975.9 157.7C979.9 151.0 983.7 141.8 985.3 134.9L986.5 130.0L1002.2 130.0C1020.5 130.0 1019.2 128.9 1016.0 141.6C1009.2 168.0 994.7 189.7 972.5 206.5C963.7 213.2 946.1 221.6 934.5 224.6C920.5 228.3 896.8 228.9 883.5 226.0ZM0.0 210.8L0.0 195.5L80.2 115.3L160.5 35.0L80.2 35.0L0.0 35.0L0.0 19.0L0.0 3.0L103.0 3.0L206.0 3.0L206.0 18.6L206.0 34.2L125.2 114.6L44.5 194.9L125.8 195.0L207.0 195.0L207.0 210.5L207.0 226.0L103.5 226.0L0.0 226.0L0.0 210.8ZM475.0 153.7C475.0 82.5 475.5 70.1 478.4 60.0C487.2 30.1 511.7 7.4 541.0 2.0C551.0 0.1 567.1 0.5 576.5 2.9C592.0 6.9 608.8 17.1 618.4 28.4L623.2 33.9L628.0 28.1C647.9 4.2 685.0 -5.6 715.7 4.9C736.9 12.2 756.1 29.7 764.3 49.5C770.9 65.3 770.4 58.6 770.8 146.2L771.1 226.0L755.6 226.0L740.1 226.0L739.8 148.8L739.5 71.5L737.2 65.6C729.4 44.9 711.1 32.0 689.5 32.0C666.4 32.0 646.3 47.4 640.5 69.5C639.2 74.6 639.0 86.3 639.0 150.7L639.0 226.0L623.0 226.0L607.0 226.0L607.0 150.2C607.0 101.6 606.6 72.9 605.9 70.0C604.1 61.9 598.8 52.8 592.4 46.5C582.6 36.8 571.0 32.0 556.9 32.0C534.9 32.0 515.7 46.3 509.0 67.9C507.1 74.0 507.0 77.2 507.0 150.1L507.0 226.0L491.0 226.0L475.0 226.0L475.0 153.7ZM1039.0 206.2C1039.0 183.8 1040.2 172.2 1043.6 160.0C1046.6 149.3 1055.4 131.5 1061.9 123.0C1068.4 114.4 1081.9 101.5 1089.7 96.4L1096.0 92.3L1091.9 90.1C1079.3 83.0 1062.9 65.8 1054.4 50.8C1047.3 38.2 1042.0 22.7 1040.5 10.2L1039.8 4.0L1055.4 4.0C1067.1 4.0 1071.2 4.3 1071.4 5.2C1071.6 5.9 1072.5 10.0 1073.5 14.2C1076.7 28.8 1085.1 43.1 1097.1 54.5C1104.9 61.9 1107.7 63.9 1116.6 68.4C1165.0 92.6 1225.0 61.8 1233.5 8.3L1234.2 4.0L1249.7 4.0L1265.2 4.0L1264.5 10.7C1262.8 26.7 1254.0 48.0 1243.3 62.6C1236.5 71.7 1225.4 82.3 1216.2 88.5L1209.9 92.7L1216.7 97.1C1232.0 107.1 1248.2 126.8 1256.1 145.1C1263.9 163.2 1266.0 175.4 1266.0 204.8L1266.0 226.0L1250.6 226.0L1235.3 226.0L1234.7 202.8C1234.1 178.9 1233.3 172.8 1228.9 161.0C1222.0 142.2 1204.0 123.4 1185.5 115.7C1172.8 110.4 1168.4 109.5 1153.0 109.5C1136.3 109.5 1130.4 110.8 1117.3 117.1C1096.6 127.0 1081.1 145.2 1074.4 167.5C1071.8 176.0 1071.7 177.9 1071.2 201.2L1070.8 226.0L1054.9 226.0L1039.0 226.0L1039.0 206.2ZM357.6 195.1C386.9 189.0 411.8 165.9 420.0 137.0C422.7 127.6 423.6 111.9 422.1 102.2C417.2 70.9 395.4 45.8 364.5 36.0C353.9 32.6 334.4 32.1 322.8 34.9C293.1 42.0 271.0 62.7 261.9 92.0C259.9 98.4 259.6 101.7 259.5 114.0C259.5 126.2 259.9 129.8 261.8 136.3C274.0 178.4 315.4 203.8 357.6 195.1ZM916.4 125.1L973.3 68.2L971.5 65.3C966.0 56.9 951.3 45.3 939.3 39.9C927.7 34.6 917.3 32.7 902.5 33.3C884.3 34.0 872.2 38.1 857.5 48.5C822.0 73.6 813.1 123.3 837.4 159.8C841.5 165.9 857.0 182.0 858.8 182.0C859.2 182.0 885.1 156.4 916.4 125.1Z"></path></svg></div>
+<p class="zx-intro-foot">© 2026 Zamex</p>
+</div>
+
+
+
+<section id="top" style="padding: 12px; height: 100vh; min-height: 740px; box-sizing: border-box">
+<div class="zx-frame" style="position: relative; height: 100%; overflow: hidden; display: flex; flex-direction: column; align-items: center; background: radial-gradient(ellipse 90% 70% at 50% 115%, #1C3557 0%, #0B1828 55%, #08121F 100%)">
+
+
+<img src="assets/hero.jpg" alt="" class="zx-heroimg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover" />
+<div aria-hidden="true" class="zx-heroshade" style="position: absolute; inset: 0; pointer-events: none"></div>
+
+
+<nav aria-label="Main" class="zx-heronav" style="position: relative; z-index: 10; width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 28px 0">
+<div style="flex: 1 1 0; display: flex">
+<a href="#top" aria-label="Zamex" class="zx-logo" style="display: inline-flex; align-items: center; text-decoration: none; color: #FFFFFF"><svg viewBox="0 0 1266 228" style="display: block; height: 19px; width: auto" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M321.3 226.6C277.0 218.2 241.4 184.8 230.6 141.5C228.1 131.6 227.0 115.6 228.0 104.6C231.9 64.2 256.2 29.6 293.1 12.1C336.3 -8.5 388.9 1.2 422.2 35.8C441.5 55.9 451.7 78.5 454.0 106.5C454.5 113.1 455.0 142.7 455.0 172.2L455.0 226.0L439.0 226.0L423.0 226.0L423.0 209.9L423.0 193.7L418.6 197.8C405.8 209.6 386.4 220.2 369.5 224.6C361.2 226.8 356.8 227.3 344.0 227.6C333.8 227.8 326.1 227.5 321.3 226.6ZM883.5 226.0C855.9 220.0 832.8 205.6 816.0 183.9C781.0 138.6 785.1 75.0 825.5 34.5C852.8 7.3 892.2 -4.3 930.0 4.0C964.2 11.4 993.9 35.0 1008.6 66.5L1011.9 73.5L951.2 134.2C917.9 167.6 890.8 195.2 891.2 195.5C891.5 195.8 896.2 196.3 901.6 196.6C918.4 197.5 936.1 192.9 950.1 183.9C958.0 178.8 971.4 165.2 975.9 157.7C979.9 151.0 983.7 141.8 985.3 134.9L986.5 130.0L1002.2 130.0C1020.5 130.0 1019.2 128.9 1016.0 141.6C1009.2 168.0 994.7 189.7 972.5 206.5C963.7 213.2 946.1 221.6 934.5 224.6C920.5 228.3 896.8 228.9 883.5 226.0ZM0.0 210.8L0.0 195.5L80.2 115.3L160.5 35.0L80.2 35.0L0.0 35.0L0.0 19.0L0.0 3.0L103.0 3.0L206.0 3.0L206.0 18.6L206.0 34.2L125.2 114.6L44.5 194.9L125.8 195.0L207.0 195.0L207.0 210.5L207.0 226.0L103.5 226.0L0.0 226.0L0.0 210.8ZM475.0 153.7C475.0 82.5 475.5 70.1 478.4 60.0C487.2 30.1 511.7 7.4 541.0 2.0C551.0 0.1 567.1 0.5 576.5 2.9C592.0 6.9 608.8 17.1 618.4 28.4L623.2 33.9L628.0 28.1C647.9 4.2 685.0 -5.6 715.7 4.9C736.9 12.2 756.1 29.7 764.3 49.5C770.9 65.3 770.4 58.6 770.8 146.2L771.1 226.0L755.6 226.0L740.1 226.0L739.8 148.8L739.5 71.5L737.2 65.6C729.4 44.9 711.1 32.0 689.5 32.0C666.4 32.0 646.3 47.4 640.5 69.5C639.2 74.6 639.0 86.3 639.0 150.7L639.0 226.0L623.0 226.0L607.0 226.0L607.0 150.2C607.0 101.6 606.6 72.9 605.9 70.0C604.1 61.9 598.8 52.8 592.4 46.5C582.6 36.8 571.0 32.0 556.9 32.0C534.9 32.0 515.7 46.3 509.0 67.9C507.1 74.0 507.0 77.2 507.0 150.1L507.0 226.0L491.0 226.0L475.0 226.0L475.0 153.7ZM1039.0 206.2C1039.0 183.8 1040.2 172.2 1043.6 160.0C1046.6 149.3 1055.4 131.5 1061.9 123.0C1068.4 114.4 1081.9 101.5 1089.7 96.4L1096.0 92.3L1091.9 90.1C1079.3 83.0 1062.9 65.8 1054.4 50.8C1047.3 38.2 1042.0 22.7 1040.5 10.2L1039.8 4.0L1055.4 4.0C1067.1 4.0 1071.2 4.3 1071.4 5.2C1071.6 5.9 1072.5 10.0 1073.5 14.2C1076.7 28.8 1085.1 43.1 1097.1 54.5C1104.9 61.9 1107.7 63.9 1116.6 68.4C1165.0 92.6 1225.0 61.8 1233.5 8.3L1234.2 4.0L1249.7 4.0L1265.2 4.0L1264.5 10.7C1262.8 26.7 1254.0 48.0 1243.3 62.6C1236.5 71.7 1225.4 82.3 1216.2 88.5L1209.9 92.7L1216.7 97.1C1232.0 107.1 1248.2 126.8 1256.1 145.1C1263.9 163.2 1266.0 175.4 1266.0 204.8L1266.0 226.0L1250.6 226.0L1235.3 226.0L1234.7 202.8C1234.1 178.9 1233.3 172.8 1228.9 161.0C1222.0 142.2 1204.0 123.4 1185.5 115.7C1172.8 110.4 1168.4 109.5 1153.0 109.5C1136.3 109.5 1130.4 110.8 1117.3 117.1C1096.6 127.0 1081.1 145.2 1074.4 167.5C1071.8 176.0 1071.7 177.9 1071.2 201.2L1070.8 226.0L1054.9 226.0L1039.0 226.0L1039.0 206.2ZM357.6 195.1C386.9 189.0 411.8 165.9 420.0 137.0C422.7 127.6 423.6 111.9 422.1 102.2C417.2 70.9 395.4 45.8 364.5 36.0C353.9 32.6 334.4 32.1 322.8 34.9C293.1 42.0 271.0 62.7 261.9 92.0C259.9 98.4 259.6 101.7 259.5 114.0C259.5 126.2 259.9 129.8 261.8 136.3C274.0 178.4 315.4 203.8 357.6 195.1ZM916.4 125.1L973.3 68.2L971.5 65.3C966.0 56.9 951.3 45.3 939.3 39.9C927.7 34.6 917.3 32.7 902.5 33.3C884.3 34.0 872.2 38.1 857.5 48.5C822.0 73.6 813.1 123.3 837.4 159.8C841.5 165.9 857.0 182.0 858.8 182.0C859.2 182.0 885.1 156.4 916.4 125.1Z"></path></svg><span class="zm-sr">Zamex</span></a>
+</div>
+<ul class="zx-md" style="margin: 0; padding: 0; list-style: none; display: flex; align-items: center; gap: 30px; font-size: 14px">
+<li><a href="#otc" class="zx-navlink" style="text-decoration: none; color: rgba(238,242,247,0.82)">${v.t.navOtc}</a></li>
+<li><a href="#how" class="zx-navlink" style="text-decoration: none; color: rgba(238,242,247,0.82)">${v.t.navHow}</a></li>
+<li><a href="#security" class="zx-navlink" style="text-decoration: none; color: rgba(238,242,247,0.82)">${v.t.navSecurity}</a></li>
+</ul>
+<div style="flex: 1 1 0; display: flex; justify-content: flex-end; align-items: center; gap: 10px">
+<button type="button" onClick="${v.toggleTheme}" aria-label="${v.themeLabel}" title="${v.themeLabel}" class="zx-press" style="flex-shrink: 0; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: #EEF2F7">
+${(v.isDark) ? html`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"></path></svg>` : null}
+${(v.isLight) ? html`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"></path></svg>` : null}
+</button>
+<div class="zx-hide-sm" style="position: relative">
+<button type="button" onClick="${v.toggleMenu}" aria-haspopup="listbox" aria-expanded="${v.menuExpanded}" aria-label="${v.t.langLabel}" style="display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 13px; border: 1px solid rgba(255,255,255,0.16); border-radius: 999px; background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); cursor: pointer; font: 500 14px Onest, sans-serif; color: #EEF2F7">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#EEF2F7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"></path></svg>
+<span>${v.curCode}</span>
+<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#EEF2F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform: ${v.chevRot}; transition: transform .2s"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+${(v.menuOpen) ? html`
+<ul role="listbox" aria-label="${v.t.langLabel}" style="position: absolute; right: 0; top: calc(100% + 10px); z-index: 40; margin: 0; padding: 6px; list-style: none; min-width: 190px; background: var(--zx-navglass); -webkit-backdrop-filter: saturate(1.6) blur(20px); backdrop-filter: saturate(1.6) blur(20px); border: 1px solid rgba(var(--zx-ink-rgb),0.1); border-radius: 16px; box-shadow: 0 24px 50px -20px rgba(6,16,28,0.55)">
+${(v.langsLight || []).map((lg) => html`
+<li>
+<button type="button" role="option" aria-selected="${lg.sel}" onClick="${lg.pick}" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px; background: ${lg.bg}; cursor: pointer; font: 500 15px Onest, sans-serif; color: var(--zx-ink); text-align: left">
+<span>${lg.name}</span>
+<span style="font-size: 12px; font-weight: 600; color: ${lg.codeColor}">${lg.code}</span>
+</button>
+</li>
+`)}
+</ul>
+` : null}
+</div>
+<a href="quote.html" class="zx-press zx-hide-sm" style="display: inline-flex; align-items: center; gap: 10px; padding: 6px 20px 6px 6px; border-radius: 999px; background: rgba(255,255,255,0.94); color: #06101C; font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap">
+<span style="width: 32px; height: 32px; border-radius: 50%; background: #FF6A2B; display: flex; align-items: center; justify-content: center">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#06101C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+</span>
+<span>${v.t.open}</span>
+</a>
+<button type="button" class="zx-mob zx-press" onClick="${v.openNav}" aria-expanded="${v.navExpanded}" aria-label="${v.t.menu}" style="align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: rgba(255,255,255,0.94); color: #06101C; cursor: pointer; font: 500 14px Onest, sans-serif">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06101C" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+<span>${v.t.menu}</span>
+</button>
+</div>
+</nav>
+
+
+<div class="zx-herotext" style="position: relative; z-index: 2; align-self: flex-start; width: 100%; max-width: 560px; box-sizing: border-box; padding: clamp(48px, 9vh, 110px) 24px 0 clamp(28px, 4.5vw, 64px); display: flex; flex-direction: column; align-items: flex-start; text-align: left">
+<div class="zx-up" style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); backdrop-filter: blur(12px); margin-bottom: 14px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF8A57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></svg>
+<span style="font-size: 14px; color: rgba(238,242,247,0.92)">${v.t.badge}</span>
+</div>
+<h1 class="zx-scale" style="margin: 0 0 16px; text-shadow: 0 2px 24px rgba(6,16,28,0.35); font-family: Onest, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 600; font-size: ${v.heroFs}; white-space: pre-line; text-wrap: balance; line-height: 1.05; letter-spacing: -0.03em; color: #E6EBF1">${v.t.heroTitle}</h1>
+<p class="zx-fade" style="margin: 0; max-width: 34em; text-wrap: balance; font-size: 14px; line-height: 1.55; color: rgba(230,235,241,0.7)">${v.t.heroSub}</p>
+</div>
+
+
+<div class="zx-bl zx-left" style="position: absolute; z-index: 5; display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 34px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); min-width: 190px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 32px; letter-spacing: -0.03em; color: #FFFFFF">${v.heroStat.big}</span>
+<span style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(238,242,247,0.62)">${v.heroStat.label}</span>
+</div>
+<a href="quote.html" class="zx-press" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px 6px 6px; border-radius: 999px; background: #FFFFFF; color: #06101C; font-size: 14px; text-decoration: none; white-space: nowrap">
+<span style="width: 28px; height: 28px; border-radius: 50%; background: rgba(6,16,28,0.08); display: flex; align-items: center; justify-content: center">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#06101C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+</span>
+<span>${v.t.ctaQuote}</span>
+</a>
+</div>
+
+
+<div class="zx-corner zx-up2" style="position: absolute; z-index: 5; right: 0; bottom: 0; background: var(--zx-bg); display: flex; align-items: center; gap: 20px; padding: 30px 26px 26px 54px">
+<div class="zx-mask-t" style="position: absolute; right: 0; pointer-events: none">
+<svg width="100%" height="100%" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M56 56V0C56 30.9279 30.9279 56 0 56H56Z" style="fill: var(--zx-bg)"></path></svg>
+</div>
+<div class="zx-mask-l" style="position: absolute; bottom: 0; pointer-events: none">
+<svg width="100%" height="100%" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M56 56H0C30.9279 56 56 30.9279 56 0V56Z" style="fill: var(--zx-bg)"></path></svg>
+</div>
+<a href="contact.html" aria-label="${v.t.ctaClient}" class="zx-press" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--zx-surface); border: 1px solid rgba(var(--zx-ink-rgb),0.1)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+</a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="contact.html" style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--zx-ink); text-decoration: none">${v.t.ctaClient}</a>
+<a href="mailto:info@zamex.tj" style="display: inline-flex; align-items: center; gap: 4px; font-size: 15px; color: rgba(var(--zx-ink-rgb),0.6); text-decoration: none">
+<span>${v.t.ctaManager}</span>
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section class="zm-stage" aria-label="${v.t.mhLabel}">
+<svg width="0" height="0" aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<filter id="zmNoise" x="0" y="0" width="100%" height="100%">
+<feTurbulence type="fractalNoise" baseFrequency=".54" numOctaves="3" seed="27" stitchTiles="stitch"></feTurbulence>
+<feColorMatrix type="saturate" values="0"></feColorMatrix>
+<feComponentTransfer>
+<feFuncR type="linear" slope="1.8" intercept="-.25"></feFuncR>
+<feFuncG type="linear" slope="1.8" intercept="-.25"></feFuncG>
+<feFuncB type="linear" slope="1.8" intercept="-.25"></feFuncB>
+<feFuncA type="table" tableValues="0 .52"></feFuncA>
+</feComponentTransfer>
+</filter>
+</defs>
+</svg>
+<div class="zm-bg zm-bg1"></div>
+<div class="zm-bg zm-bg2"></div>
+
+<div class="zm-masthead">
+<h2 class="zm-headline">
+<span class="zm-line zm-l1">${v.t.mhLine1}<span class="zm-dotword" aria-label="OTC" style="width: ${v.headDots.w}"><svg class="zm-dotsvg" viewBox="${v.headDots.vb}" aria-hidden="true">${(v.headDots.circles || []).map((d) => html`<circle cx="${d.x}" cy="${d.y}" r="1.8" fill="currentColor"></circle>`)}</svg></span></span>
+<span class="zm-line zm-l2">${v.t.mhLine2}</span>
+</h2>
+<p class="zm-intro">${v.t.bandSub}</p>
+</div>
+
+<div class="zm-cards" aria-label="${v.t.mhLabel}">
+${(v.metricCards || []).map((mc) => html`
+<article class="zm-card ${mc.cls}">
+
+${(mc.c1) ? html`
+<svg class="zm-gauge zm-art" viewBox="0 0 326 326" aria-hidden="true">
+<defs>
+<linearGradient id="zmArc" gradientUnits="userSpaceOnUse" x1="7" y1="136" x2="312" y2="109">
+<stop offset="0" stop-color="#ffb08a" stop-opacity=".06"></stop>
+<stop offset=".08" stop-color="#ff9a6a" stop-opacity=".44"></stop>
+<stop offset=".34" stop-color="#ff6a2b" stop-opacity=".94"></stop>
+<stop offset=".58" stop-color="#ff6a2b" stop-opacity="1"></stop>
+<stop offset=".82" stop-color="#ffe2d4" stop-opacity=".74"></stop>
+<stop offset=".94" stop-color="#fff3ec" stop-opacity=".28"></stop>
+<stop offset="1" stop-color="#ffffff" stop-opacity="0"></stop>
+</linearGradient>
+<linearGradient id="zmArcShadow" gradientUnits="userSpaceOnUse" x1="11" y1="136" x2="308" y2="110">
+<stop offset="0" stop-color="#061226" stop-opacity=".04"></stop>
+<stop offset=".09" stop-color="#061226" stop-opacity=".2"></stop>
+<stop offset=".52" stop-color="#061226" stop-opacity=".22"></stop>
+<stop offset="1" stop-color="#061226" stop-opacity="0"></stop>
+</linearGradient>
+<radialGradient id="zmBeam" gradientUnits="userSpaceOnUse" cx="163" cy="163" r="145">
+<stop offset=".3" stop-color="#ff8a57" stop-opacity="0"></stop>
+<stop offset=".45" stop-color="#ff8a57" stop-opacity=".05"></stop>
+<stop offset=".7" stop-color="#ff8a57" stop-opacity=".12"></stop>
+<stop offset=".9" stop-color="#ff8a57" stop-opacity=".16"></stop>
+<stop offset="1" stop-color="#ff8a57" stop-opacity=".08"></stop>
+</radialGradient>
+<linearGradient id="zmBeamEdge" gradientUnits="userSpaceOnUse" x1="238" y1="33" x2="190.5" y2="115.4">
+<stop offset="0" stop-color="#ffe2d4" stop-opacity=".3"></stop>
+<stop offset=".48" stop-color="#ffd0bb" stop-opacity=".16"></stop>
+<stop offset="1" stop-color="#ffc6ad" stop-opacity="0"></stop>
+</linearGradient>
+<filter id="zmSoft"><feGaussianBlur stdDeviation="1.35"></feGaussianBlur></filter>
+<filter id="zmGBlur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="11"></feGaussianBlur></filter>
+</defs>
+<path d="M11.34 136.26A154 154 0 0 1 307.71 110.33" fill="none" stroke="url(#zmArcShadow)" stroke-width="3.2" stroke-linecap="round"></path>
+<path d="M6.91 135.48A158.5 158.5 0 0 1 311.94 108.79" fill="none" stroke="url(#zmArc)" stroke-width="2.2" stroke-linecap="round"></path>
+<path d="M19.22 137.65A146 146 0 0 1 236 36.56" fill="none" stroke="rgba(255,170,130,.31)" stroke-width="1.15"></path>
+<g class="zm-sweep">
+<path d="M238 33.1A150 150 0 0 1 277.9 66.6L199.8 119.5A55 55 0 0 0 190.5 115.4Z" fill="url(#zmBeam)" filter="url(#zmSoft)"></path>
+<path d="M238 33.1L190.5 115.4" stroke="url(#zmBeamEdge)" stroke-width="1.25" stroke-linecap="round" filter="url(#zmSoft)"></path>
+</g>
+<g>
+${(v.ticks || []).map((tk) => html`
+<line x1="${tk.x1}" y1="${tk.y1}" x2="${tk.x2}" y2="${tk.y2}" stroke="rgba(255,200,170,.38)" stroke-width="${tk.w}"></line>
+`)}
+</g>
+<ellipse cx="225" cy="166" rx="92" ry="76" fill="#ffffff" opacity=".055" filter="url(#zmGBlur)"></ellipse>
+</svg>
+` : null}
+
+${(mc.c2) ? html`
+<svg class="zm-wall" viewBox="0 0 429 554" preserveAspectRatio="none" aria-hidden="true">
+<defs>
+<linearGradient id="zmTC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d5c2ff" stop-opacity=".22"></stop><stop offset=".5" stop-color="#f2a0ee" stop-opacity=".32"></stop><stop offset="1" stop-color="#ff96da" stop-opacity=".34"></stop></linearGradient>
+<linearGradient id="zmTR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe8da" stop-opacity=".56"></stop><stop offset=".5" stop-color="#f9c6d0" stop-opacity=".26"></stop><stop offset="1" stop-color="#eba4bf" stop-opacity=".08"></stop></linearGradient>
+<linearGradient id="zmMR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e858b8" stop-opacity=".52"></stop><stop offset=".5" stop-color="#e6459c" stop-opacity=".46"></stop><stop offset="1" stop-color="#de74ba" stop-opacity=".16"></stop></linearGradient>
+<linearGradient id="zmDeep" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a2340" stop-opacity=".5"></stop><stop offset=".35" stop-color="#ff8a6a" stop-opacity=".4"></stop><stop offset=".7" stop-color="#f3a6d0" stop-opacity=".35"></stop><stop offset="1" stop-color="#9fb6ff" stop-opacity=".35"></stop></linearGradient>
+<filter id="zmTile" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="3.4"></feGaussianBlur></filter>
+</defs>
+<g filter="url(#zmTile)">
+<rect x="-24" y="22" width="106" height="149" rx="15" fill="#c6bbff" fill-opacity=".18"></rect>
+<rect x="88" y="22" width="247" height="150" rx="15" fill="url(#zmTC)"></rect>
+<rect x="346" y="22" width="111" height="147" rx="15" fill="url(#zmTR)"></rect>
+<rect x="-24" y="177" width="108" height="174" rx="15" fill="#e4dcff" fill-opacity=".24"></rect>
+<rect x="88" y="177" width="247" height="174" rx="15" fill="#f0bef0" fill-opacity=".16"></rect>
+<rect x="344" y="175" width="113" height="176" rx="15" fill="url(#zmMR)"></rect>
+<rect x="-24" y="384" width="480" height="170" rx="15" fill="url(#zmDeep)"></rect>
+</g>
+</svg>
+<div class="zm-window zm-art">
+<div class="zm-wlines">
+<span class="zm-wl1"></span>
+<span class="zm-wl2"></span>
+<span class="zm-wl3"></span>
+</div>
+</div>
+` : null}
+
+${(mc.c3) ? html`
+<svg class="zm-map zm-art" viewBox="0 0 429 238" preserveAspectRatio="none" aria-hidden="true">
+<g fill="none" stroke="#ffffff" stroke-width="1">
+<path opacity=".20" d="M0 5H128c27 0 36 7 39 26 2 16 9 22 24 22h106c16 0 23-8 25-25 2-16 10-23 31-23h76"></path>
+<path opacity=".30" d="M0 117h46c15 0 22 8 26 25 5 23 12 31 31 31h174c18 0 25-8 30-31 4-17 11-25 26-25h96"></path>
+<path opacity=".34" d="M0 173h87c15 0 22 7 27 25 4 15 11 22 28 22h140c17 0 25-7 29-22 5-18 12-25 28-25h90"></path>
+<path opacity=".16" d="M0 228h120c17 0 25-5 28-18 4-15 10-20 28-20h81c18 0 25 6 28 20 4 13 11 18 28 18h116"></path>
+<path opacity=".26" d="M0 5H429M0 61H429M0 117H429"></path>
+<path opacity=".09" d="M0 173H429"></path>
+</g>
+<g fill="none" stroke="#fff8dd" stroke-width="1.15">
+<path opacity=".52" d="M0 61h95c14 0 22-6 27-20 4-13 12-20 27-20h115c15 0 23 6 27 20 5 14 13 20 28 20h110"></path>
+<path class="zm-flowline" opacity=".94" d="M0 117h88c15 0 22-8 25-25 4-24 12-31 31-31h129c20 0 27 7 31 31 3 17 10 25 26 25h99"></path>
+</g>
+<circle cx="45" cy="117" r="6.5" fill="#ffffff"></circle>
+<circle cx="133" cy="61" r="6.5" fill="#fff4a7"></circle>
+<circle cx="189" cy="61" r="6.5" fill="#fff1a4"></circle>
+<circle cx="319" cy="61" r="6.5" fill="#fff4a6"></circle>
+<circle cx="319" cy="117" r="6.5" fill="#fff2a0"></circle>
+</svg>
+` : null}
+
+<svg class="zm-grain" viewBox="0 0 429 554" preserveAspectRatio="none" aria-hidden="true"><rect width="429" height="554" filter="url(#zmNoise)"></rect></svg>
+
+<h3 class="zm-title">${mc.title}</h3>
+<div class="zm-metric" style="top: ${mc.top}">
+<svg class="zm-num" viewBox="${mc.dots.vb}" aria-hidden="true" style="width: ${mc.dots.w}">${(mc.dots.circles || []).map((d) => html`<circle cx="${d.x}" cy="${d.y}" r="${mc.r}" fill="currentColor"></circle>`)}</svg>
+<span class="zm-sr">${mc.value}</span>
+</div>
+<p class="zm-caption">${mc.caption}</p>
+<a href="${mc.href}" class="zm-more">${v.t.learnMore}</a>
+</article>
+`)}
+</div>
+</section>
+
+
+<section id="otc" style="padding: 104px 24px 80px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px">
+<div class="zx-reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 48px; align-items: start">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 32px">
+<h2 style="margin: 0; font-size: clamp(36px, 4.2vw, 56px); font-weight: 500; line-height: 1.08; letter-spacing: -0.035em">${v.t.meetTitle}</h2>
+<a href="contact.html" class="zx-pill" style="display: inline-flex; align-items: center; gap: 12px; padding: 8px 8px 8px 28px; border-radius: 999px; background: var(--zx-btn); color: var(--zx-btn-ink); font-size: 16px; font-weight: 500; text-decoration: none">
+<span>${v.t.ctaClient}</span>
+<span style="width: 36px; height: 36px; border-radius: 50%; background: var(--zx-surface); display: flex; align-items: center; justify-content: center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="stroke: var(--zx-ink)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</span>
+</a>
+</div>
+<p style="margin: 0; font-size: clamp(22px, 2.3vw, 30px); line-height: 1.45; letter-spacing: -0.01em; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.aboutSub}</p>
+</div>
+
+<div class="zx-cards">
+${(v.infoCards || []).map((c) => html`
+${(c.wide) ? html`
+<div class="zx-span2 zx-reveal zx-media" style="position: relative; overflow: hidden; border-radius: 24px; min-height: 340px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; background: var(--zx-media)">
+<img src="assets/gold-bars.jpg" alt="" class="zx-kb" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 45%" />
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(var(--zx-fade-rgb),0.92) 0%, rgba(var(--zx-fade-rgb),0.7) 38%, rgba(var(--zx-fade-rgb),0) 62%)"></div>
+<h3 style="position: relative; margin: 0; max-width: 12em; font-size: 26px; font-weight: 500; line-height: 1.25; letter-spacing: -0.02em; color: var(--zx-ink)">${c.title}</h3>
+<p style="position: relative; margin: 0; max-width: 20em; font-size: 16px; line-height: 1.55; color: rgba(var(--zx-ink-rgb),0.7)">${c.text}</p>
+</div>
+` : null}
+${(c.dark) ? html`
+<div class="zx-reveal" style="position: relative; overflow: hidden; border-radius: 24px; min-height: 340px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; background: #0B2239; color: #FFFFFF">
+${(c.hasImg) ? html`
+<img src="${c.img}" alt="" class="zx-kb" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: ${c.imgPos}" />
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,34,57,0.85) 0%, rgba(11,34,57,0.15) 30%, rgba(11,34,57,0.1) 55%, rgba(11,34,57,0.9) 100%)"></div>
+` : null}
+<div style="position: relative; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px">
+<h3 style="margin: 0; max-width: 9em; font-size: 26px; font-weight: 500; line-height: 1.25; letter-spacing: -0.02em">${c.title}</h3>
+<span style="font-size: 15px; font-weight: 600; color: #FF8A57">${c.big}</span>
+</div>
+<p style="position: relative; margin: 0; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.75)">${c.text}</p>
+</div>
+` : null}
+`)}
+</div>
+
+
+</div>
+</section>
+
+
+<section aria-label="${v.t.assetsLead}" style="padding: 36px 24px">
+<div class="zx-trusted" style="max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 40px">
+<p style="margin: 0; flex: 0 0 auto; max-width: 163px; font-size: 14px; font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; color: rgba(var(--zx-ink-rgb),0.6)">${v.t.assetsLead}</p>
+<div class="zx-tmask" style="flex: 1 1 auto; min-width: 0; overflow: hidden">
+<div class="zx-marquee" style="display: flex; width: max-content; align-items: center; animation-duration: 30s">
+${(v.assetRow || []).map((ar) => html`
+<span style="flex-shrink: 0; margin: 0 28px; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; line-height: 1; color: var(--zx-ink)"><img src="${ar.logo}" alt="" class="zx-bwlogo" style="width: 32px; height: 32px; display: block" /><span>${ar.label}</span></span>
+`)}
+</div>
+</div>
+</div>
+</section>
+
+
+<section id="how" style="padding: 96px 24px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px">
+<h2 class="zx-reveal" style="margin: 0; max-width: 16em; font-size: clamp(36px, 4.2vw, 56px); font-weight: 500; line-height: 1.08; letter-spacing: -0.035em">${v.t.howTitle}</h2>
+<div style="position: relative; height: 2px; background: rgba(var(--zx-ink-rgb),0.1); border-radius: 2px; overflow: hidden">
+<div class="zx-line" style="position: absolute; inset: 0; background: #FF6A2B"></div>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px">
+${(v.steps || []).map((s) => html`
+<li class="zx-reveal zx-media" style="min-height: 480px; border-radius: 28px; background: var(--zx-media); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end">
+${(s.isVideo) ? html`
+<video src="${s.src}" autoPlay="${true}" muted="${true}" loop="${true}" playsInline="${true}" preload="auto" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none"></video>
+` : null}
+${(s.isImg) ? html`
+<img src="${s.src}" alt="" class="zx-kb" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: ${s.pos}" />
+` : null}
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(var(--zx-fade-rgb),0.97) 0%, rgba(var(--zx-fade-rgb),0.88) 36%, rgba(var(--zx-fade-rgb),0) 64%)"></div>
+<div style="position: relative; z-index: 1; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 12px">
+<span style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: var(--zx-btn); color: var(--zx-btn-ink); font-size: 13px; font-weight: 600; letter-spacing: 0.02em">${s.num}</span>
+<h3 style="margin: 4px 0 0; font-size: clamp(24px, 2.2vw, 30px); font-weight: 500; line-height: 1.12; letter-spacing: -0.03em; color: var(--zx-ink)">${s.title}</h3>
+<p style="margin: 0; max-width: 26em; font-size: 16px; line-height: 1.6; color: rgba(var(--zx-ink-rgb),0.7)">${s.text}</p>
+</div>
+</li>
+`)}
+</ol>
+</div>
+</section>
+
+
+<section id="business" style="padding: 0 24px 96px">
+<div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 32px; align-items: start">
+<div class="zx-reveal" style="display: flex; flex-direction: column; gap: 8px; padding-top: 8px">
+<span style="font-size: 14px; color: rgba(var(--zx-ink-rgb),0.6)">${v.t.ucEyebrow}</span>
+<h2 style="margin: 0 0 16px; font-size: clamp(44px, 5vw, 68px); font-weight: 500; line-height: 1; letter-spacing: -0.04em">${v.t.ucTitle}</h2>
+<p style="margin: 0 0 28px; max-width: 24em; font-size: 16px; line-height: 1.6; color: rgba(var(--zx-ink-rgb),0.62)">${v.t.bizSub}</p>
+<div role="tablist" aria-label="${v.t.ucTitle}" style="display: flex; flex-direction: column; max-width: 28em">
+${(v.ucTabs || []).map((tb) => html`
+<button type="button" role="tab" aria-selected="${tb.sel}" onClick="${tb.pick}" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; padding: 0; border: 0; border-top: 1px solid rgba(var(--zx-ink-rgb),0.12); background: transparent; cursor: pointer; font: 500 18px Onest, sans-serif; letter-spacing: -0.01em; color: ${tb.fg}; text-align: left">
+<span>${tb.label}</span>
+<span style="width: 10px; height: 10px; border-radius: 50%; background: ${tb.dot}; transition: background .2s"></span>
+</button>
+`)}
+</div>
+</div>
+<div class="zx-reveal zx-media zx-uc" style="position: relative; overflow: hidden; border-radius: 32px; min-height: 640px; display: flex; flex-direction: column; justify-content: flex-end; background: var(--zx-media)">
+<video src="assets/toggles.mp4" autoPlay="${true}" muted="${true}" loop="${true}" playsInline="${true}" preload="auto" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none"></video>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(var(--zx-fade-rgb),0.97) 0%, rgba(var(--zx-fade-rgb),0.85) 32%, rgba(var(--zx-fade-rgb),0) 58%)"></div>
+<div style="position: relative; z-index: 1; padding: clamp(32px, 4vw, 48px); display: flex; flex-direction: column; align-items: flex-start">
+<h3 style="margin: 0 0 20px; font-size: clamp(34px, 3.6vw, 48px); font-weight: 500; line-height: 1.1; letter-spacing: -0.03em">${v.uc.title}</h3>
+<p style="margin: 0 0 32px; max-width: 26em; font-size: 16px; line-height: 1.6; color: rgba(var(--zx-ink-rgb),0.7)">${v.uc.text}</p>
+<a href="contact.html" class="zx-pill" style="display: inline-flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500; color: var(--zx-ink); text-decoration: none">
+<span style="width: 40px; height: 40px; border-radius: 50%; background: var(--zx-glass); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="stroke: var(--zx-ink)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</span>
+<span>${v.t.knowMore}</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+
+<section id="security" style="padding: 0 24px 96px">
+<div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start">
+<div class="zx-reveal" style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: clamp(36px, 4.2vw, 56px); font-weight: 500; line-height: 1.08; letter-spacing: -0.035em">${v.t.secTitle}</h2>
+<p style="margin: 0; max-width: 28em; font-size: 17px; line-height: 1.6; color: rgba(var(--zx-ink-rgb),0.65)">${v.t.secSub}</p>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 10px">
+${(v.secItems || []).map((si) => html`
+<li class="zx-reveal" style="display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: 18px; background: var(--zx-surface); font-size: 16px; font-weight: 500">
+<span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: var(--zx-btn); display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="stroke: var(--zx-btn-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>
+</span>
+<span>${si}</span>
+</li>
+`)}
+</ul>
+</div>
+</section>
+
+
+<section style="padding: 0 24px 80px">
+<div class="zx-reveal" style="max-width: 1240px; margin: 0 auto; position: relative; overflow: hidden; border-radius: 32px; background: #0B2239; color: #FFFFFF; padding: clamp(36px, 6vw, 88px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 32px; align-items: end">
+<div class="zx-orb zx-o2" style="width: 520px; height: 520px; right: -160px; bottom: -280px; background: #FF6A2B; opacity: 0.45"></div>
+<h2 style="position: relative; margin: 0; max-width: 13em; font-size: clamp(34px, 4.4vw, 60px); font-weight: 500; line-height: 1.06; letter-spacing: -0.035em">${v.t.ctaTitle}</h2>
+<div style="position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 28px">
+<p style="margin: 0; max-width: 28em; font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.7)">${v.t.ctaSub}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="contact.html" class="zx-pill" style="display: inline-flex; align-items: center; gap: 12px; padding: 8px 8px 8px 26px; border-radius: 999px; background: #FFFFFF; color: #0A1626; font-size: 16px; font-weight: 500; text-decoration: none">
+<span>${v.t.ctaManager}</span>
+<span style="width: 36px; height: 36px; border-radius: 50%; background: #0A1626; display: flex; align-items: center; justify-content: center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</span>
+</a>
+<a href="quote.html" class="zx-pill" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3); color: #FFFFFF; font-size: 16px; font-weight: 500; text-decoration: none">${v.t.ctaQuote}</a>
+</div>
+</div>
+</div>
+</section>
+
+
+<footer style="overflow: hidden">
+<div style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 24px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 32px; padding-top: 40px; border-top: 1px solid rgba(var(--zx-ink-rgb),0.12)">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span class="zx-logo" style="display: inline-flex; align-items: center"><svg viewBox="0 0 1266 228" style="display: block; height: 20px; width: auto" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M321.3 226.6C277.0 218.2 241.4 184.8 230.6 141.5C228.1 131.6 227.0 115.6 228.0 104.6C231.9 64.2 256.2 29.6 293.1 12.1C336.3 -8.5 388.9 1.2 422.2 35.8C441.5 55.9 451.7 78.5 454.0 106.5C454.5 113.1 455.0 142.7 455.0 172.2L455.0 226.0L439.0 226.0L423.0 226.0L423.0 209.9L423.0 193.7L418.6 197.8C405.8 209.6 386.4 220.2 369.5 224.6C361.2 226.8 356.8 227.3 344.0 227.6C333.8 227.8 326.1 227.5 321.3 226.6ZM883.5 226.0C855.9 220.0 832.8 205.6 816.0 183.9C781.0 138.6 785.1 75.0 825.5 34.5C852.8 7.3 892.2 -4.3 930.0 4.0C964.2 11.4 993.9 35.0 1008.6 66.5L1011.9 73.5L951.2 134.2C917.9 167.6 890.8 195.2 891.2 195.5C891.5 195.8 896.2 196.3 901.6 196.6C918.4 197.5 936.1 192.9 950.1 183.9C958.0 178.8 971.4 165.2 975.9 157.7C979.9 151.0 983.7 141.8 985.3 134.9L986.5 130.0L1002.2 130.0C1020.5 130.0 1019.2 128.9 1016.0 141.6C1009.2 168.0 994.7 189.7 972.5 206.5C963.7 213.2 946.1 221.6 934.5 224.6C920.5 228.3 896.8 228.9 883.5 226.0ZM0.0 210.8L0.0 195.5L80.2 115.3L160.5 35.0L80.2 35.0L0.0 35.0L0.0 19.0L0.0 3.0L103.0 3.0L206.0 3.0L206.0 18.6L206.0 34.2L125.2 114.6L44.5 194.9L125.8 195.0L207.0 195.0L207.0 210.5L207.0 226.0L103.5 226.0L0.0 226.0L0.0 210.8ZM475.0 153.7C475.0 82.5 475.5 70.1 478.4 60.0C487.2 30.1 511.7 7.4 541.0 2.0C551.0 0.1 567.1 0.5 576.5 2.9C592.0 6.9 608.8 17.1 618.4 28.4L623.2 33.9L628.0 28.1C647.9 4.2 685.0 -5.6 715.7 4.9C736.9 12.2 756.1 29.7 764.3 49.5C770.9 65.3 770.4 58.6 770.8 146.2L771.1 226.0L755.6 226.0L740.1 226.0L739.8 148.8L739.5 71.5L737.2 65.6C729.4 44.9 711.1 32.0 689.5 32.0C666.4 32.0 646.3 47.4 640.5 69.5C639.2 74.6 639.0 86.3 639.0 150.7L639.0 226.0L623.0 226.0L607.0 226.0L607.0 150.2C607.0 101.6 606.6 72.9 605.9 70.0C604.1 61.9 598.8 52.8 592.4 46.5C582.6 36.8 571.0 32.0 556.9 32.0C534.9 32.0 515.7 46.3 509.0 67.9C507.1 74.0 507.0 77.2 507.0 150.1L507.0 226.0L491.0 226.0L475.0 226.0L475.0 153.7ZM1039.0 206.2C1039.0 183.8 1040.2 172.2 1043.6 160.0C1046.6 149.3 1055.4 131.5 1061.9 123.0C1068.4 114.4 1081.9 101.5 1089.7 96.4L1096.0 92.3L1091.9 90.1C1079.3 83.0 1062.9 65.8 1054.4 50.8C1047.3 38.2 1042.0 22.7 1040.5 10.2L1039.8 4.0L1055.4 4.0C1067.1 4.0 1071.2 4.3 1071.4 5.2C1071.6 5.9 1072.5 10.0 1073.5 14.2C1076.7 28.8 1085.1 43.1 1097.1 54.5C1104.9 61.9 1107.7 63.9 1116.6 68.4C1165.0 92.6 1225.0 61.8 1233.5 8.3L1234.2 4.0L1249.7 4.0L1265.2 4.0L1264.5 10.7C1262.8 26.7 1254.0 48.0 1243.3 62.6C1236.5 71.7 1225.4 82.3 1216.2 88.5L1209.9 92.7L1216.7 97.1C1232.0 107.1 1248.2 126.8 1256.1 145.1C1263.9 163.2 1266.0 175.4 1266.0 204.8L1266.0 226.0L1250.6 226.0L1235.3 226.0L1234.7 202.8C1234.1 178.9 1233.3 172.8 1228.9 161.0C1222.0 142.2 1204.0 123.4 1185.5 115.7C1172.8 110.4 1168.4 109.5 1153.0 109.5C1136.3 109.5 1130.4 110.8 1117.3 117.1C1096.6 127.0 1081.1 145.2 1074.4 167.5C1071.8 176.0 1071.7 177.9 1071.2 201.2L1070.8 226.0L1054.9 226.0L1039.0 226.0L1039.0 206.2ZM357.6 195.1C386.9 189.0 411.8 165.9 420.0 137.0C422.7 127.6 423.6 111.9 422.1 102.2C417.2 70.9 395.4 45.8 364.5 36.0C353.9 32.6 334.4 32.1 322.8 34.9C293.1 42.0 271.0 62.7 261.9 92.0C259.9 98.4 259.6 101.7 259.5 114.0C259.5 126.2 259.9 129.8 261.8 136.3C274.0 178.4 315.4 203.8 357.6 195.1ZM916.4 125.1L973.3 68.2L971.5 65.3C966.0 56.9 951.3 45.3 939.3 39.9C927.7 34.6 917.3 32.7 902.5 33.3C884.3 34.0 872.2 38.1 857.5 48.5C822.0 73.6 813.1 123.3 837.4 159.8C841.5 165.9 857.0 182.0 858.8 182.0C859.2 182.0 885.1 156.4 916.4 125.1Z"></path></svg><span class="zm-sr">Zamex</span></span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(var(--zx-ink-rgb),0.62)">${v.t.footTag}</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="font-weight: 600">${v.t.footPlatform}</span>
+<a href="#otc" style="text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.navOtc}</a>
+<a href="#business" style="text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.navBusiness}</a>
+<a href="#how" style="text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.navHow}</a>
+<a href="#security" style="text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.navSecurity}</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="font-weight: 600">${v.t.footDocs}</span>
+<a href="#top" style="text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.docTerms}</a>
+<a href="#top" style="text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.docAml}</a>
+<a href="#top" style="text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.docRisk}</a>
+<a href="#top" style="text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">${v.t.docPrivacy}</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="font-weight: 600">${v.t.footContact}</span>
+<a href="mailto:info@zamex.tj" style="text-decoration: none; color: rgba(var(--zx-ink-rgb),0.7)">info@zamex.tj</a>
+<span style="color: rgba(var(--zx-ink-rgb),0.62)">${v.t.footAddress}</span>
+</div>
+</div>
+<p style="margin: 0; padding-top: 24px; border-top: 1px solid rgba(var(--zx-ink-rgb),0.12); max-width: 60em; font-size: 13px; line-height: 1.55; color: rgba(var(--zx-ink-rgb),0.6)">${v.t.footLegal}</p>
+</div>
+<div aria-hidden="true" class="zx-reveal" style="font-family: Unbounded, Onest, sans-serif; font-weight: 700; font-size: clamp(90px, 24vw, 340px); line-height: 0.82; letter-spacing: -0.07em; text-align: center; margin-bottom: -0.12em; color: var(--zx-ink); opacity: 0.08">zamex</div>
+</footer>
+
+
+
+
+<header class="zx-snav">
+<div class="zx-snav-in">
+<a href="#top" aria-label="Zamex" class="zx-logo" style="display: inline-flex; align-items: center; text-decoration: none; color: var(--zx-ink)"><svg viewBox="0 0 1266 228" style="display: block; height: 19px; width: auto" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M321.3 226.6C277.0 218.2 241.4 184.8 230.6 141.5C228.1 131.6 227.0 115.6 228.0 104.6C231.9 64.2 256.2 29.6 293.1 12.1C336.3 -8.5 388.9 1.2 422.2 35.8C441.5 55.9 451.7 78.5 454.0 106.5C454.5 113.1 455.0 142.7 455.0 172.2L455.0 226.0L439.0 226.0L423.0 226.0L423.0 209.9L423.0 193.7L418.6 197.8C405.8 209.6 386.4 220.2 369.5 224.6C361.2 226.8 356.8 227.3 344.0 227.6C333.8 227.8 326.1 227.5 321.3 226.6ZM883.5 226.0C855.9 220.0 832.8 205.6 816.0 183.9C781.0 138.6 785.1 75.0 825.5 34.5C852.8 7.3 892.2 -4.3 930.0 4.0C964.2 11.4 993.9 35.0 1008.6 66.5L1011.9 73.5L951.2 134.2C917.9 167.6 890.8 195.2 891.2 195.5C891.5 195.8 896.2 196.3 901.6 196.6C918.4 197.5 936.1 192.9 950.1 183.9C958.0 178.8 971.4 165.2 975.9 157.7C979.9 151.0 983.7 141.8 985.3 134.9L986.5 130.0L1002.2 130.0C1020.5 130.0 1019.2 128.9 1016.0 141.6C1009.2 168.0 994.7 189.7 972.5 206.5C963.7 213.2 946.1 221.6 934.5 224.6C920.5 228.3 896.8 228.9 883.5 226.0ZM0.0 210.8L0.0 195.5L80.2 115.3L160.5 35.0L80.2 35.0L0.0 35.0L0.0 19.0L0.0 3.0L103.0 3.0L206.0 3.0L206.0 18.6L206.0 34.2L125.2 114.6L44.5 194.9L125.8 195.0L207.0 195.0L207.0 210.5L207.0 226.0L103.5 226.0L0.0 226.0L0.0 210.8ZM475.0 153.7C475.0 82.5 475.5 70.1 478.4 60.0C487.2 30.1 511.7 7.4 541.0 2.0C551.0 0.1 567.1 0.5 576.5 2.9C592.0 6.9 608.8 17.1 618.4 28.4L623.2 33.9L628.0 28.1C647.9 4.2 685.0 -5.6 715.7 4.9C736.9 12.2 756.1 29.7 764.3 49.5C770.9 65.3 770.4 58.6 770.8 146.2L771.1 226.0L755.6 226.0L740.1 226.0L739.8 148.8L739.5 71.5L737.2 65.6C729.4 44.9 711.1 32.0 689.5 32.0C666.4 32.0 646.3 47.4 640.5 69.5C639.2 74.6 639.0 86.3 639.0 150.7L639.0 226.0L623.0 226.0L607.0 226.0L607.0 150.2C607.0 101.6 606.6 72.9 605.9 70.0C604.1 61.9 598.8 52.8 592.4 46.5C582.6 36.8 571.0 32.0 556.9 32.0C534.9 32.0 515.7 46.3 509.0 67.9C507.1 74.0 507.0 77.2 507.0 150.1L507.0 226.0L491.0 226.0L475.0 226.0L475.0 153.7ZM1039.0 206.2C1039.0 183.8 1040.2 172.2 1043.6 160.0C1046.6 149.3 1055.4 131.5 1061.9 123.0C1068.4 114.4 1081.9 101.5 1089.7 96.4L1096.0 92.3L1091.9 90.1C1079.3 83.0 1062.9 65.8 1054.4 50.8C1047.3 38.2 1042.0 22.7 1040.5 10.2L1039.8 4.0L1055.4 4.0C1067.1 4.0 1071.2 4.3 1071.4 5.2C1071.6 5.9 1072.5 10.0 1073.5 14.2C1076.7 28.8 1085.1 43.1 1097.1 54.5C1104.9 61.9 1107.7 63.9 1116.6 68.4C1165.0 92.6 1225.0 61.8 1233.5 8.3L1234.2 4.0L1249.7 4.0L1265.2 4.0L1264.5 10.7C1262.8 26.7 1254.0 48.0 1243.3 62.6C1236.5 71.7 1225.4 82.3 1216.2 88.5L1209.9 92.7L1216.7 97.1C1232.0 107.1 1248.2 126.8 1256.1 145.1C1263.9 163.2 1266.0 175.4 1266.0 204.8L1266.0 226.0L1250.6 226.0L1235.3 226.0L1234.7 202.8C1234.1 178.9 1233.3 172.8 1228.9 161.0C1222.0 142.2 1204.0 123.4 1185.5 115.7C1172.8 110.4 1168.4 109.5 1153.0 109.5C1136.3 109.5 1130.4 110.8 1117.3 117.1C1096.6 127.0 1081.1 145.2 1074.4 167.5C1071.8 176.0 1071.7 177.9 1071.2 201.2L1070.8 226.0L1054.9 226.0L1039.0 226.0L1039.0 206.2ZM357.6 195.1C386.9 189.0 411.8 165.9 420.0 137.0C422.7 127.6 423.6 111.9 422.1 102.2C417.2 70.9 395.4 45.8 364.5 36.0C353.9 32.6 334.4 32.1 322.8 34.9C293.1 42.0 271.0 62.7 261.9 92.0C259.9 98.4 259.6 101.7 259.5 114.0C259.5 126.2 259.9 129.8 261.8 136.3C274.0 178.4 315.4 203.8 357.6 195.1ZM916.4 125.1L973.3 68.2L971.5 65.3C966.0 56.9 951.3 45.3 939.3 39.9C927.7 34.6 917.3 32.7 902.5 33.3C884.3 34.0 872.2 38.1 857.5 48.5C822.0 73.6 813.1 123.3 837.4 159.8C841.5 165.9 857.0 182.0 858.8 182.0C859.2 182.0 885.1 156.4 916.4 125.1Z"></path></svg><span class="zm-sr">Zamex</span></a>
+<nav aria-label="Sections" class="zx-md" style="display: flex; align-items: center; gap: 2px; flex-grow: 1; justify-content: center">
+<a href="#otc" class="zx-snl" data-sec="otc">${v.t.navOtc}</a>
+<a href="#how" class="zx-snl" data-sec="how">${v.t.navHow}</a>
+<a href="#security" class="zx-snl" data-sec="security">${v.t.navSecurity}</a>
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 8px">
+<button type="button" onClick="${v.toggleTheme}" aria-label="${v.themeLabel}" title="${v.themeLabel}" class="zx-press" style="flex-shrink: 0; width: 40px; height: 40px; padding: 0; border-radius: 50%; border: 1px solid rgba(var(--zx-ink-rgb),0.12); background: var(--zx-glass); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--zx-ink)">
+${(v.isDark) ? html`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"></path></svg>` : null}
+${(v.isLight) ? html`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"></path></svg>` : null}
+</button>
+<div class="zx-hide-sm" style="position: relative">
+<button type="button" onClick="${v.toggleMenu2}" aria-haspopup="listbox" aria-expanded="${v.menuExpanded2}" aria-label="${v.t.langLabel}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 12px; border: 1px solid rgba(var(--zx-ink-rgb),0.12); border-radius: 999px; background: var(--zx-glass); cursor: pointer; font: 500 14px Onest, sans-serif; color: var(--zx-ink)">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="stroke: var(--zx-ink)"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"></path></svg>
+<span>${v.curCode}</span>
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="stroke: var(--zx-ink); transform: ${v.chevRot2}; transition: transform .2s"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+${(v.menuOpen2) ? html`
+<ul role="listbox" aria-label="${v.t.langLabel}" style="position: absolute; right: 0; top: calc(100% + 10px); margin: 0; padding: 6px; list-style: none; min-width: 180px; background: var(--zx-surface); border: 1px solid rgba(var(--zx-ink-rgb),0.1); border-radius: 16px; box-shadow: 0 24px 50px -20px rgba(var(--zx-ink-rgb),0.35)">
+${(v.langsLight || []).map((lg) => html`
+<li>
+<button type="button" role="option" aria-selected="${lg.sel}" onClick="${lg.pick}" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px; background: ${lg.bg}; cursor: pointer; font: 500 15px Onest, sans-serif; color: var(--zx-ink); text-align: left">
+<span>${lg.name}</span>
+<span style="font-size: 12px; font-weight: 600; color: ${lg.codeColor}">${lg.code}</span>
+</button>
+</li>
+`)}
+</ul>
+` : null}
+</div>
+<a href="quote.html" class="zx-press zx-hide-sm" style="display: inline-flex; align-items: center; gap: 10px; padding: 5px 18px 5px 5px; border-radius: 999px; background: var(--zx-btn); color: var(--zx-btn-ink); font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap">
+<span style="width: 30px; height: 30px; border-radius: 50%; background: #FF6A2B; display: flex; align-items: center; justify-content: center">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#06101C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+</span>
+<span>${v.t.open}</span>
+</a>
+<button type="button" class="zx-mob zx-press" onClick="${v.openNav}" aria-expanded="${v.navExpanded}" aria-label="${v.t.menu}" style="align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--zx-btn); color: var(--zx-btn-ink); cursor: pointer; font: 500 14px Onest, sans-serif">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+<span>${v.t.menu}</span>
+</button>
+</div>
+<div class="zx-snav-prog" aria-hidden="true"></div>
+</div>
+</header>
+
+
+<div style="position: fixed; inset: 0; z-index: 80; visibility: ${v.navVis}; pointer-events: ${v.navPe}; transition: visibility 0s linear ${v.navVisDelay}">
+<button type="button" aria-label="${v.t.close}" onClick="${v.closeNav}" style="position: absolute; inset: 0; border: 0; padding: 0; cursor: pointer; background: rgba(0,0,0,0.45); backdrop-filter: blur(4px); opacity: ${v.navBackOp}; transition: opacity .5s ease"></button>
+<div role="dialog" aria-label="${v.t.menu}" style="position: absolute; top: 0; right: 0; height: 100%; width: min(100%, 400px); box-sizing: border-box; padding: 20px 20px 150px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; color: #FFFFFF; background: radial-gradient(ellipse 120% 60% at 100% 110%, rgba(255,106,43,0.35), transparent 60%), #0B1828; transform: ${v.navPanelX}; transition: transform .5s cubic-bezier(.16,1,.3,1)">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<span class="zx-logo" style="display: inline-flex; align-items: center"><svg viewBox="0 0 1266 228" style="display: block; height: 20px; width: auto" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M321.3 226.6C277.0 218.2 241.4 184.8 230.6 141.5C228.1 131.6 227.0 115.6 228.0 104.6C231.9 64.2 256.2 29.6 293.1 12.1C336.3 -8.5 388.9 1.2 422.2 35.8C441.5 55.9 451.7 78.5 454.0 106.5C454.5 113.1 455.0 142.7 455.0 172.2L455.0 226.0L439.0 226.0L423.0 226.0L423.0 209.9L423.0 193.7L418.6 197.8C405.8 209.6 386.4 220.2 369.5 224.6C361.2 226.8 356.8 227.3 344.0 227.6C333.8 227.8 326.1 227.5 321.3 226.6ZM883.5 226.0C855.9 220.0 832.8 205.6 816.0 183.9C781.0 138.6 785.1 75.0 825.5 34.5C852.8 7.3 892.2 -4.3 930.0 4.0C964.2 11.4 993.9 35.0 1008.6 66.5L1011.9 73.5L951.2 134.2C917.9 167.6 890.8 195.2 891.2 195.5C891.5 195.8 896.2 196.3 901.6 196.6C918.4 197.5 936.1 192.9 950.1 183.9C958.0 178.8 971.4 165.2 975.9 157.7C979.9 151.0 983.7 141.8 985.3 134.9L986.5 130.0L1002.2 130.0C1020.5 130.0 1019.2 128.9 1016.0 141.6C1009.2 168.0 994.7 189.7 972.5 206.5C963.7 213.2 946.1 221.6 934.5 224.6C920.5 228.3 896.8 228.9 883.5 226.0ZM0.0 210.8L0.0 195.5L80.2 115.3L160.5 35.0L80.2 35.0L0.0 35.0L0.0 19.0L0.0 3.0L103.0 3.0L206.0 3.0L206.0 18.6L206.0 34.2L125.2 114.6L44.5 194.9L125.8 195.0L207.0 195.0L207.0 210.5L207.0 226.0L103.5 226.0L0.0 226.0L0.0 210.8ZM475.0 153.7C475.0 82.5 475.5 70.1 478.4 60.0C487.2 30.1 511.7 7.4 541.0 2.0C551.0 0.1 567.1 0.5 576.5 2.9C592.0 6.9 608.8 17.1 618.4 28.4L623.2 33.9L628.0 28.1C647.9 4.2 685.0 -5.6 715.7 4.9C736.9 12.2 756.1 29.7 764.3 49.5C770.9 65.3 770.4 58.6 770.8 146.2L771.1 226.0L755.6 226.0L740.1 226.0L739.8 148.8L739.5 71.5L737.2 65.6C729.4 44.9 711.1 32.0 689.5 32.0C666.4 32.0 646.3 47.4 640.5 69.5C639.2 74.6 639.0 86.3 639.0 150.7L639.0 226.0L623.0 226.0L607.0 226.0L607.0 150.2C607.0 101.6 606.6 72.9 605.9 70.0C604.1 61.9 598.8 52.8 592.4 46.5C582.6 36.8 571.0 32.0 556.9 32.0C534.9 32.0 515.7 46.3 509.0 67.9C507.1 74.0 507.0 77.2 507.0 150.1L507.0 226.0L491.0 226.0L475.0 226.0L475.0 153.7ZM1039.0 206.2C1039.0 183.8 1040.2 172.2 1043.6 160.0C1046.6 149.3 1055.4 131.5 1061.9 123.0C1068.4 114.4 1081.9 101.5 1089.7 96.4L1096.0 92.3L1091.9 90.1C1079.3 83.0 1062.9 65.8 1054.4 50.8C1047.3 38.2 1042.0 22.7 1040.5 10.2L1039.8 4.0L1055.4 4.0C1067.1 4.0 1071.2 4.3 1071.4 5.2C1071.6 5.9 1072.5 10.0 1073.5 14.2C1076.7 28.8 1085.1 43.1 1097.1 54.5C1104.9 61.9 1107.7 63.9 1116.6 68.4C1165.0 92.6 1225.0 61.8 1233.5 8.3L1234.2 4.0L1249.7 4.0L1265.2 4.0L1264.5 10.7C1262.8 26.7 1254.0 48.0 1243.3 62.6C1236.5 71.7 1225.4 82.3 1216.2 88.5L1209.9 92.7L1216.7 97.1C1232.0 107.1 1248.2 126.8 1256.1 145.1C1263.9 163.2 1266.0 175.4 1266.0 204.8L1266.0 226.0L1250.6 226.0L1235.3 226.0L1234.7 202.8C1234.1 178.9 1233.3 172.8 1228.9 161.0C1222.0 142.2 1204.0 123.4 1185.5 115.7C1172.8 110.4 1168.4 109.5 1153.0 109.5C1136.3 109.5 1130.4 110.8 1117.3 117.1C1096.6 127.0 1081.1 145.2 1074.4 167.5C1071.8 176.0 1071.7 177.9 1071.2 201.2L1070.8 226.0L1054.9 226.0L1039.0 226.0L1039.0 206.2ZM357.6 195.1C386.9 189.0 411.8 165.9 420.0 137.0C422.7 127.6 423.6 111.9 422.1 102.2C417.2 70.9 395.4 45.8 364.5 36.0C353.9 32.6 334.4 32.1 322.8 34.9C293.1 42.0 271.0 62.7 261.9 92.0C259.9 98.4 259.6 101.7 259.5 114.0C259.5 126.2 259.9 129.8 261.8 136.3C274.0 178.4 315.4 203.8 357.6 195.1ZM916.4 125.1L973.3 68.2L971.5 65.3C966.0 56.9 951.3 45.3 939.3 39.9C927.7 34.6 917.3 32.7 902.5 33.3C884.3 34.0 872.2 38.1 857.5 48.5C822.0 73.6 813.1 123.3 837.4 159.8C841.5 165.9 857.0 182.0 858.8 182.0C859.2 182.0 885.1 156.4 916.4 125.1Z"></path></svg><span class="zm-sr">Zamex</span></span>
+<button type="button" onClick="${v.closeNav}" aria-label="${v.t.close}" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,0.12); cursor: pointer; display: flex; align-items: center; justify-content: center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
+</div>
+<nav aria-label="${v.t.menu}" style="display: flex; flex-direction: column; gap: 8px">
+${(v.mobLinks || []).map((ml) => html`
+<a href="${ml.href}" onClick="${ml.go}" style="padding: 16px 20px; border-radius: 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: #FFFFFF; font-size: 18px; font-weight: 500; text-decoration: none; opacity: ${ml.op}; transform: ${ml.ty}; transition: opacity .5s cubic-bezier(.16,1,.3,1) ${ml.delay}, transform .5s cubic-bezier(.16,1,.3,1) ${ml.delay}">${ml.label}</a>
+`)}
+</nav>
+<div role="group" aria-label="${v.t.langLabel}" style="display: flex; gap: 8px">
+${(v.mobLangs || []).map((lg) => html`
+<button type="button" onClick="${lg.pick}" aria-pressed="${lg.sel}" style="min-width: 56px; min-height: 44px; padding: 0 14px; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; background: ${lg.bg}; color: ${lg.fg}; cursor: pointer; font: 600 14px Onest, sans-serif">${lg.code}</button>
+`)}
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 20px; display: flex; flex-direction: column; gap: 10px; opacity: ${v.navCtaOp}; transition: opacity .5s ease ${v.navCtaDelay}">
+<a href="quote.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #FFFFFF; color: #06101C; font-weight: 600; font-size: 16px; text-decoration: none">${v.t.open}</a>
+<a href="quote.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #FF6A2B; color: #06101C; font-weight: 600; font-size: 16px; text-decoration: none">${v.t.ctaQuote}</a>
+</div>
+</div>
+</div>
+
+</div>
+`;
+};
+render(h(Page, {"startLang": "ru"}), document.getElementById("app"));
+</script>
+<noscript><p style="font-family:sans-serif;padding:24px">Zamex — please enable JavaScript to view this site, or email info@zamex.tj.</p></noscript>
+</body>
+</html>
