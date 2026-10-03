@@ -8,10 +8,11 @@ A complete static website — no Framer, no build step. Upload this folder as-is
 | `contact.html` | Contact form |
 | `quote.html` | Request a quote form |
 | `404.html` | "Page not found" (Vercel and GitHub Pages show it automatically) |
-| `assets/` | Photos, videos, coin logos, favicon |
-| `vendor/` | Preact + htm (tiny open-source libraries the pages run on, MIT licensed) |
-| `site-config.js` | Where the forms send, and where the site asks for the visitor's country |
+| `*.jpg`, `*.mp4`, `*.svg` | Photos, videos, coin logos, favicon (all in the top level, next to the pages) |
+| `LICENSE-*.txt` | Licenses for Preact + htm (tiny MIT-licensed libraries built into each page) |
 | `cloudflare-worker.js` | Copy of the Cloudflare Worker code (forms → Telegram, and country lookup) |
+
+Each page is self-contained: its code and settings are inside the `.html` file, and every photo, video and logo sits in the same top-level folder — no subfolders.
 
 ## Publish on Vercel (recommended, free)
 
