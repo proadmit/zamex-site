@@ -178,7 +178,7 @@ class Page extends DCLogic {
     const extra = {
       stepList: t.steps.map((label, i) => ({ n: "0" + (i + 1), label: label })),
       assets: opt(["USDT", "USDC", "BTC", "ETH", t.other]),
-      ccys: opt(["USD", "RUB", "AED", "EUR", "CNY", t.other]),
+      ccys: opt(["USD", "KZT", "AED", "EUR", "CNY", t.other]),
       pickBuy: () => this.setState({ side: "buy" }),
       pickSell: () => this.setState({ side: "sell" }),
       buySel: side === "buy" ? "true" : "false", sellSel: side === "sell" ? "true" : "false",
